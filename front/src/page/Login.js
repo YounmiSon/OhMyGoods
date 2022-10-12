@@ -1,7 +1,10 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-const Main = ({ user }) => {
+const Login = () => {
   const nav = useNavigate();
+  const dispatch = useDispatch();
+
   const [inputs, setInputs] = useState({
     id: "",
     pwd: "",
@@ -12,11 +15,13 @@ const Main = ({ user }) => {
     console.log(inputs);
   };
 
-  const onLogin = () => {
+  const loginHandler = () => {
     // 값이 하나라도 비어있을 때
     !inputs.id || !inputs.pwd
       ? alert("아이디와 비밀번호를 확인해주세요")
       : nav("/shop");
+    dispatch({ type: "LOGIN", payload: { ...inputs } });
+    nav("/");
   };
 
   const signUp = () => {
@@ -24,14 +29,14 @@ const Main = ({ user }) => {
   };
   return (
     <>
-      <h1>Main</h1>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center my-8">
         <label>아이디</label>
         <input
           type="text"
           name="id"
           value={inputs.id}
           onChange={inputsHandler}
+          className="border-black border-[1px]"
         />
         <label>비밀번호</label>
         <input
@@ -39,13 +44,20 @@ const Main = ({ user }) => {
           name="pwd"
           value={inputs.pwd}
           onChange={inputsHandler}
+          className="border-black border-[1px]"
         />
       </div>
-
-      <input type="submit" value="로그인" onClick={onLogin} />
-      <input type="button" value="회원가입" onClick={signUp} />
+      <div className="flex justify-center items-center">
+        <input
+          type="submit"
+          value="로그인"
+          onClick={loginHandler}
+          className="pr-6"
+        />
+        <input type="button" value="회원가입" onClick={signUp} />
+      </div>
     </>
   );
 };
 
-export default Main;
+export default Login;
