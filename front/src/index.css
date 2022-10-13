@@ -1,7 +1,9 @@
+/* tailwind 설정 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* 폰트설정 */
 @font-face {
   font-family: "LeferiBaseType-RegularA";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff")
@@ -9,9 +11,11 @@
   font-weight: normal;
   font-style: normal;
 }
+
 * {
   font-family: "LeferiBaseType-RegularA";
 }
+
 body {
   margin: 0;
   font-family: "LeferiBaseType-RegularA";
@@ -19,10 +23,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
+/* 스크롤바 보이지 않게 설정 */
 body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */

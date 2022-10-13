@@ -1,7 +1,7 @@
 // 필요한 모듈 가져오기
 const express = require("express");
 const cors = require("cors");
-const { sequelize, user } = require("./public");
+const { sequelize, User } = require("./model");
 
 // express 호출
 const app = express();
@@ -17,17 +17,39 @@ sequelize
   });
 
 const options = {
-  origin: "http://localhost:8000",
+  origin: "http://localhost:3000",
 };
 
 // 전달 받은 객체 형태를 해석해서 사용할 수 있게 설정
 app.use(express.json());
 // cors options설정
 app.use(cors(options));
+
+// 회원가입 데이터
+app.post("/join", async (req, res) => {
+  let { email, nickname, password } = req.body;
+  const users = await User.findOne({
+    where: { email: email },
+  });
+  if (!users) {
+    User.create({
+      email: email,
+      nickname: nickname,
+      password: password,
+      authority: "일반회원",
+    }).then(() => {
+      res.send("가입을 축하합니다");
+    });
+  } else {
+    res.send("이미 존재하는 이메일입니다");
+  }
+});
+
+// 로그인
 app.post("/login", async (req, res) => {
-  let { id, pwd } = req.body;
-  const users = await user.findOne({
-    where: { user_id: id, user_pwd: pwd },
+  let { email, password } = req.body;
+  const users = await User.findOne({
+    where: { email: email, password: password },
   });
   if (users) {
     res.send(true);
@@ -36,25 +58,15 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/join", async (req, res) => {
-  //console.log(req.body);
-  // body에서 id, pwd 뽑아서
-  let { id, pwd } = req.body;
-  const users = await user.findOne({
-    where: { user_id: id },
+// 마이페이지
+app.post("/mypage", (req, res) => {
+  User.findOne({
+    where: {
+      nickname: req.body.nickname,
+    },
+  }).then((e) => {
+    res.send({ data: e });
   });
-  if (!users) {
-    user
-      .create({
-        user_id: id,
-        user_pwd: pwd,
-      })
-      .then(() => {
-        res.send("너 가입됨");
-      });
-  } else {
-    res.send("동일한 아이디가 있어요");
-  }
 });
 
 // 포트 대기

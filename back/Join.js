@@ -1,25 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { loginAction } from "../redux/actions/loginAction";
+import { loginAction } from "../redux/middleware/loginAction";
 
 const Join = () => {
-  const nav = useNavigate();
   const dispatch = useDispatch();
-
   const [userInputs, setUserInputs] = useState({
     email: "",
     nickname: "",
     password: "",
   });
-
   const userInputsHandler = (e) => {
     const { name, value } = e.target;
     setUserInputs({ ...userInputs, [name]: value });
     console.log(userInputs);
   };
-
-  const join = () => {
+  const signUp = () => {
     dispatch(
       loginAction.join(
         userInputs.email,
@@ -27,13 +22,7 @@ const Join = () => {
         userInputs.password
       )
     );
-    setUserInputs({
-      email: "",
-      nickname: "",
-      password: "",
-    });
   };
-
   return (
     <>
       <div className="flex flex-col justify-center items-center my-8">
@@ -63,14 +52,10 @@ const Join = () => {
         />
       </div>
       <div className="flex justify-center items-center">
-        <input
-          type="submit"
-          value="회원가입"
-          className="cursor-pointer"
-          onClick={join}
-        />
+        <input type="submit" value="회원가입" onClick={signUp} />
       </div>
     </>
   );
 };
+
 export default Join;

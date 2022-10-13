@@ -1,4 +1,4 @@
-import Goods from "../components/Goods";
+import { Goods } from "../components";
 const Shop = () => {
   return (
     <>

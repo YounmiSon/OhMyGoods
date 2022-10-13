@@ -1,48 +1,46 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { loginAction } from "../redux/actions/loginAction";
 const Login = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
-    id: "",
-    pwd: "",
+    email: "",
+    password: "",
   });
+
   const inputsHandler = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
     console.log(inputs);
   };
 
-  const loginHandler = () => {
-    // 값이 하나라도 비어있을 때
-    !inputs.id || !inputs.pwd
-      ? alert("아이디와 비밀번호를 확인해주세요")
-      : nav("/shop");
-    dispatch({ type: "LOGIN", payload: { ...inputs } });
-    nav("/");
+  const login = () => {
+    // 로그인을 하면 리덕스에 신호를 보내주는데
+    // loginAction의 login을 찾아서 거기다가 inputs.email, password를 보내줌
+    // 상태를 변화시킬 때 이 객체를 참조하라고 보내주는 데이터이고
+    // 그럼 action에서 파라미터로 dispatch랑 getState를 받는 함수자체를 thunk 미들웨어로 넘기게 된다
+    dispatch(loginAction.login(inputs.email, inputs.password, nav));
   };
 
-  const signUp = () => {
-    nav("/join");
-  };
   return (
     <>
       <div className="flex flex-col justify-center items-center my-8">
-        <label>아이디</label>
+        <label>이메일</label>
         <input
           type="text"
-          name="id"
-          value={inputs.id}
+          name="email"
+          value={inputs.email}
           onChange={inputsHandler}
           className="border-black border-[1px]"
         />
-        <label>비밀번호</label>
+        <label className="mt-4">비밀번호</label>
         <input
           type="password"
-          name="pwd"
-          value={inputs.pwd}
+          name="password"
+          value={inputs.password}
           onChange={inputsHandler}
           className="border-black border-[1px]"
         />
@@ -51,10 +49,12 @@ const Login = () => {
         <input
           type="submit"
           value="로그인"
-          onClick={loginHandler}
-          className="pr-6"
+          onClick={login}
+          className="cursor-pointer pr-6"
         />
-        <input type="button" value="회원가입" onClick={signUp} />
+        <Link to="/join">
+          <input type="button" value="회원가입" className="cursor-pointer" />
+        </Link>
       </div>
     </>
   );

@@ -1,32 +1,11 @@
-import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-const Mypage = ({ user }) => {
-  const nav = useNavigate();
-
-  const { id } = user || {};
-  const [imageSrc, setImageSrc] = useState(null);
-  const imgRef = useRef();
-
-  const onChangeImage = () => {
-    const reader = new FileReader();
-    const file = imgRef.current.files[0];
-
-    reader["readAsDataURL"](file);
-    reader.onloadend = () => {
-      setImageSrc(reader.result);
-    };
-  };
-  const isEditing = () => {
-    nav("/mypage/edit");
-  };
-
+const Mypage = () => {
   return (
     <>
       <div className="flex justify-center items-center mt-12 w-screen">
         <div className="mx-10">
           <img
             className="w-96 my-8 rounded-full"
-            src={imageSrc ? imageSrc : "/img/default_profile.png"}
+            src="/img/default_profile.png"
             alt="profile"
           />
         </div>
@@ -37,12 +16,7 @@ const Mypage = ({ user }) => {
         </div>
       </div>
       <div className="flex items-center justify-center">
-        <input
-          type="submit"
-          value="수정하기"
-          onClick={isEditing}
-          className="cursor-pointer"
-        />
+        <input type="submit" value="수정하기" className="cursor-pointer" />
       </div>
     </>
   );

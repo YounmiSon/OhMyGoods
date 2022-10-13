@@ -4,4 +4,5 @@ import Join from "./Join";
 import Shop from "./Shop";
 import Mypage from "./Mypage";
 import EditMyInfo from "./EditMyInfo";
-export { Main, Join, Shop, Mypage, Login, EditMyInfo };
+import Notice from "./Notice";
+export { Main, Join, Shop, Mypage, Login, EditMyInfo, Notice };

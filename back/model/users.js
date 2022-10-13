@@ -1,24 +1,29 @@
 const Sequelize = require("sequelize");
 
-class user extends Sequelize.Model {
+class User extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        id: {
+        email: {
           type: Sequelize.STRING(20),
           allowNull: false,
-          unique: true,
+        },
+        nickname: {
+          type: Sequelize.STRING(20),
+          allowNull: false,
           primaryKey: true,
         },
-        user_id: {
+        password: {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
-        user_pw: {
-          type: Sequelize.STRING(20),
-          allowNull: false,
+        profileImg: {
+          type: Sequelize.STRING,
+          allowNull: true,
+          BLOB: true,
+          defaultValue: "./public/img/default_profile.jpg",
         },
-        user_role: {
+        authority: {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
@@ -28,11 +33,15 @@ class user extends Sequelize.Model {
         timestamps: true,
         modelName: "User",
         tableName: "users",
+        paranoid: false,
         charset: "utf8",
         collate: "utf8_general_ci",
       }
     );
   }
+  static associate(db) {
+    db.User.hasMany(db.Post, { foreignKey: "writer", sourceKey: "nickname" });
+  }
 }
 
-module.exports = user;
+module.exports = User;

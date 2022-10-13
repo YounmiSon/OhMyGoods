@@ -3,7 +3,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./Main.css";
-import Goods from "../components/Goods";
 import { Pagination, Navigation } from "swiper";
 
 const Main = () => {
@@ -27,7 +26,6 @@ const Main = () => {
         <SwiperSlide>Slide 8</SwiperSlide>
         <SwiperSlide>Slide 9</SwiperSlide>
       </Swiper>
-      <Goods />
     </>
   );
 };
