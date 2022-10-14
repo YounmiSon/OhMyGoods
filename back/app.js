@@ -50,12 +50,17 @@ app.post("/login", async (req, res) => {
   let { email, password } = req.body;
   const users = await User.findOne({
     where: { email: email, password: password },
-  });
-  if (users) {
-    res.send(true);
-  } else {
-    res.send(false);
-  }
+  })
+    .then((e) => {
+      if (e.authority === "관리자") {
+        res.send("관리자계정으로 접속하셨습니다");
+      } else if (e.authority === "일반회원") {
+        res.send("하이");
+      }
+    })
+    .catch((err) => {
+      res.send(false);
+    });
 });
 
 // 마이페이지

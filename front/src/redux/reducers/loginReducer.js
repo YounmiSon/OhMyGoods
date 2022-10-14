@@ -12,7 +12,6 @@ function loginReducer(state = init, action) {
   // 여기서 type이름 바로 지정하고 함수를 정의해줌
   switch (type) {
     case "LOGIN":
-      console.log("isLogin");
       return {
         // 현재의 상태
         ...state,

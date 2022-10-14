@@ -24,10 +24,12 @@ body {
 }
 
 /* 스크롤바 보이지 않게 설정 */
-body {
+body,
+textarea {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+textarea::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }

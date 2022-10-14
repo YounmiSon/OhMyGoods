@@ -22,7 +22,7 @@ const Nav = ({ isLogin }) => {
         <li
           className="cursor-pointer"
           onClick={() => {
-            nav("/notice");
+            nav("/board");
           }}
         >
           공지사항

@@ -14,7 +14,6 @@ const Login = () => {
   const inputsHandler = (e) => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
-    console.log(inputs);
   };
 
   const login = () => {

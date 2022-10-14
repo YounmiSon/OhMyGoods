@@ -1,4 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 const Mypage = () => {
+  const nav = useNavigate();
+  const editUserInfo = () => {
+    nav("/mypage/edit");
+  };
   return (
     <>
       <div className="flex justify-center items-center mt-12 w-screen">
@@ -16,7 +22,12 @@ const Mypage = () => {
         </div>
       </div>
       <div className="flex items-center justify-center">
-        <input type="submit" value="수정하기" className="cursor-pointer" />
+        <input
+          onClick={editUserInfo}
+          type="submit"
+          value="수정하기"
+          className="cursor-pointer"
+        />
       </div>
     </>
   );

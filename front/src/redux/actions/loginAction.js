@@ -23,17 +23,13 @@ function login(email, password, nav) {
   // store에서 dispatch와 getState 메ㅑfmf qkerh
   return async (dispatch, getState) => {
     const user = await axios({
-      // 통신할 방식
       method: "post",
-      // 통신할 웹문서
       url: "http://localhost:8000/login",
-      // 통신할 데이터
       data: {
         email,
         password,
       },
     });
-    console.log(user);
     if (user.data) {
       dispatch({ type: "LOGIN", payload: { email, password } });
       nav("/");
