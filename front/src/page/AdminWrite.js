@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const AdminWrite = () => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch() ;
   const loginUser = useSelector((state) => state.loginUser);
   const [inputs, setInputs] = useState({
     title: "",

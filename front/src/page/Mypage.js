@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Mypage = () => {
+const Mypage = ({ user }) => {
   const nav = useNavigate();
+  const [user, setUser] = useState();
   const editUserInfo = () => {
     nav("/mypage/edit");
   };
@@ -16,7 +18,7 @@ const Mypage = () => {
           />
         </div>
         <div className="flex flex-col items-center">
-          <h1 className="text-2xl mb-10">username의 마이페이지</h1>
+          <h1 className="text-2xl mb-10">{nickname} 마이페이지</h1>
           <span className="text-2xl">닉네임 : user1</span>
           <span className="text-2xl">보유포인트: 1000p</span>
         </div>
