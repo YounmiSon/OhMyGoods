@@ -1,5 +1,5 @@
+// 우선 하드코딩해서 만들어 둠 나중에 DB 연결 해야됨
 import React from "react";
-
 const Goods = () => {
   return (
     <>

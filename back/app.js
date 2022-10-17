@@ -37,6 +37,7 @@ app.post("/join", async (req, res) => {
       nickname: nickname,
       password: password,
       authority: "일반회원",
+      point: 1000,
     }).then(() => {
       res.send("가입을 축하합니다");
     });
@@ -61,6 +62,27 @@ app.post("/login", async (req, res) => {
     .catch((err) => {
       res.send(false);
     });
+});
+
+// 게시판
+app.post("/board", (req, res) => {
+  Post.findAll().then((datas) => {
+    res.send(datas);
+  });
+});
+
+// 게시판
+app.post("/board/write", async (req, res) => {
+  let { title, content, writer } = req.body;
+  Post.create({
+    title: title,
+    content: content,
+    writer: writer,
+  })
+    .then(() => {
+      res.send("글 등록됨");
+    })
+    .catch((err) => res.send(err));
 });
 
 // 마이페이지

@@ -11,6 +11,7 @@ import {
   AdminWrite,
 } from "./page";
 import { Header, Nav } from "./components";
+import { loginAction } from "./redux/actions/loginAction";
 function App() {
   // useSelector가 useState의 역할을 한다고 했는데
   // 여기서 loginReducer를 타고 들어가면 isLogin이 있음
@@ -24,6 +25,12 @@ function App() {
   function loginMessage() {
     return <Navigate to="/login" />;
   }
+
+  // const isAdmin = () => {
+  //   if (loginAction.login.email === "admin@admin.com") {
+  //     return true;
+  //   }
+  // };
   return (
     <>
       <Header />

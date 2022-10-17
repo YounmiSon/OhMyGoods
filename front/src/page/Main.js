@@ -1,3 +1,4 @@
+// 여긴 그냥 슬라이드 등등 있는 메인 페이지
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";

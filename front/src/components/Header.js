@@ -1,3 +1,4 @@
+// 메인으로 이동하는 기능만 있다
 import React from "react";
 import { Link } from "react-router-dom";
 const Header = () => {

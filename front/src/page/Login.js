@@ -5,7 +5,6 @@ import { loginAction } from "../redux/actions/loginAction";
 const Login = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-
   const [inputs, setInputs] = useState({
     email: "",
     password: "",

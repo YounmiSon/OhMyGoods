@@ -2,13 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Board = () => {
-  const posts = useSelector((state) => state.boardReducer.posts);
+const Board = ({ isAdmin }) => {
   const nav = useNavigate();
+
+  // posts는 reducer에 있는 초기값([]) posts
+  const posts = useSelector((state) => state.boardReducer.posts);
+
+  // 글쓰기 버튼 클릭시 write 페이지로 보내줌
   const writePost = () => {
     nav("/board/write");
   };
-  const isAdmin = () => {};
   return (
     <>
       <div className="flex justify-center items-center my-8">
@@ -32,6 +35,10 @@ const Board = () => {
         </table>
       </div>
       <div className="w-4/5">
+        {/* 
+        admin 권한 일때만 글쓰기 버튼이 보이게 
+        isAdmin 어디서 가져올거임?? -> 액션 연결 해줘야 함
+        */}
         {isAdmin ? (
           <button
             className="float-right justify-center items-center bg-yellow-200 p-3 rounded-xl"

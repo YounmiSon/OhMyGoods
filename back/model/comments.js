@@ -1,20 +1,20 @@
 const Sequelize = require("sequelize");
 
-class Post extends Sequelize.Model {
+class Comment extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        postId: {
+        commentId: {
           type: Sequelize.INTEGER,
           primaryKey: true,
           autoIncrement: true,
           unique: true,
         },
-        title: {
+        commentContent: {
           type: Sequelize.STRING(100),
           allowNull: false,
         },
-        content: {
+        commentWriter: {
           type: Sequelize.TEXT,
           allowNull: false,
         },
@@ -22,8 +22,8 @@ class Post extends Sequelize.Model {
       {
         sequelize,
         timestamps: true,
-        modelName: "Post",
-        tableName: "posts",
+        modelName: "Comment",
+        tableName: "Comments",
         paranoid: false,
         charset: "utf8",
         collate: "utf8_general_ci",
@@ -31,9 +31,9 @@ class Post extends Sequelize.Model {
     );
   }
   static associate(db) {
-    db.Post.belongsTo(db.User, { foreignKey: "writer", targetKey: "nickname" });
-    db.Post.hasMany(db.Comment, { foreignKey : "postId", sourceKey : "postId" });
+    db.Comment.belongsTo(db.Post, { foreignKey: "postId", targetKey: "postId" });
+    
   }
 }
 
-module.exports = Post;
+module.exports = Comment;

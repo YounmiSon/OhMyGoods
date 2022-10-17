@@ -4,6 +4,12 @@ class User extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
+        userId:{
+          type: Sequelize.INTEGER, 
+          allowNull: false,
+          autoIncrement: true,
+          unique: true
+        },
         email: {
           type: Sequelize.STRING(20),
           allowNull: false,
@@ -25,6 +31,10 @@ class User extends Sequelize.Model {
         },
         authority: {
           type: Sequelize.STRING(20),
+          allowNull: false,
+        },
+        point: {
+          type: Sequelize.INTEGER,
           allowNull: false,
         },
       },

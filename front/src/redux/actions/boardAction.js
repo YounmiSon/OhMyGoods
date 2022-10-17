@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// action 함수 인자로 필요한 것 전달
 function addPost(title, content, writer, nav) {
   return async (dispatch, getState) => {
     const post = await axios({
@@ -12,6 +13,9 @@ function addPost(title, content, writer, nav) {
       },
     });
     console.log(post);
+    nav("/board");
   };
 }
+
 export const boardAction = { addPost };
+

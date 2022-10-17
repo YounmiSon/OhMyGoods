@@ -1,39 +1,43 @@
 const Sequelize = require("sequelize");
 
-class Post extends Sequelize.Model {
+class Product extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        postId: {
+        productsId: {
           type: Sequelize.INTEGER,
           primaryKey: true,
           autoIncrement: true,
           unique: true,
         },
-        title: {
+        productsName: {
           type: Sequelize.STRING(100),
           allowNull: false,
         },
-        content: {
-          type: Sequelize.TEXT,
+        productsPrice: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+        },
+        productsDetail: {
+          type: Sequelize.STRING(100),
+          allowNull: false,
+        },
+        isLiked: {
+          type: Sequelize.BOOLEAN,
           allowNull: false,
         },
       },
       {
         sequelize,
         timestamps: true,
-        modelName: "Post",
-        tableName: "posts",
+        modelName: "Product",
+        tableName: "Products",
         paranoid: false,
         charset: "utf8",
         collate: "utf8_general_ci",
       }
     );
   }
-  static associate(db) {
-    db.Post.belongsTo(db.User, { foreignKey: "writer", targetKey: "nickname" });
-    db.Post.hasMany(db.Comment, { foreignKey : "postId", sourceKey : "postId" });
-  }
 }
 
-module.exports = Post;
+module.exports = Product;
