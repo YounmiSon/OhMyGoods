@@ -1,5 +1,4 @@
-import Goods from "./Goods";
-import Header from "./Header";
 import Nav from "./Nav";
+import CartItems from "./CartItems";
 
-export { Goods, Header, Nav };
+export { Nav, CartItems };

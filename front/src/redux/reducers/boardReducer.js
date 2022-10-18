@@ -21,9 +21,7 @@ const boardReducer = (state = init, action) => {
       return { ...state, posts: [...deletedPosts] };
 
     case "EDITPOST":
-      const editedPosts = state.posts.map((post) =>
-        post.id === payload.id ? payload : post
-      );
+      const editedPosts = state.posts.map((post) => (post.id === payload.id ? payload : post));
       return { ...state, posts: [...editedPosts] };
 
     default:

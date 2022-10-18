@@ -25,31 +25,14 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center my-8">
+      <div className="flex flex-col justify-center items-center  mt-28">
         <label>이메일</label>
-        <input
-          type="text"
-          name="email"
-          value={inputs.email}
-          onChange={inputsHandler}
-          className="border-black border-[1px]"
-        />
+        <input type="text" name="email" value={inputs.email} onChange={inputsHandler} className="border-black border-[1px]" />
         <label className="mt-4">비밀번호</label>
-        <input
-          type="password"
-          name="password"
-          value={inputs.password}
-          onChange={inputsHandler}
-          className="border-black border-[1px]"
-        />
+        <input type="password" name="password" value={inputs.password} onChange={inputsHandler} className="border-black border-[1px]" />
       </div>
       <div className="flex justify-center items-center">
-        <input
-          type="submit"
-          value="로그인"
-          onClick={login}
-          className="cursor-pointer pr-6"
-        />
+        <input type="submit" value="로그인" onClick={login} className="cursor-pointer pr-6" />
         <Link to="/join">
           <input type="button" value="회원가입" className="cursor-pointer" />
         </Link>

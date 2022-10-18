@@ -12,9 +12,9 @@ const EditMyInfo = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const imgRef = useRef();
 
-  // 파일에서 이미지 선택하기 눌었을 때 
+  // 파일에서 이미지 선택하기 눌었을 때
   const onChangeImage = () => {
-    // FileReader는 비동기적으로 데이터를 읽기 위해 읽을 파일을 가리키는 File혹은 Blob객체를 이용해 
+    // FileReader는 비동기적으로 데이터를 읽기 위해 읽을 파일을 가리키는 File혹은 Blob객체를 이용해
     // 파일의 내용을 읽고 사용자 컴퓨터에 저장하는 것을 가능하게 한다 -> 즉,클라이언트단에서 file이랑 blob 사용할 수 있게 해준다
     const reader = new FileReader();
     // 업로드 했을 때 첫번째 인덱스에 있는 이미지 선택
@@ -29,12 +29,8 @@ const EditMyInfo = () => {
     };
   };
   return (
-    <div className="flex flex-col justify-center items-center mt-12 w-screen">
-      <img
-        className="w-96 my-8 rounded-full"
-        src={imageSrc ? imageSrc : "/img/default_profile.png"}
-        alt="profile"
-      />
+    <div className="flex flex-col justify-center items-center mt-28 w-screen">
+      <img className="w-96 my-8 rounded-full" src={imageSrc ? imageSrc : "/img/default_profile.png"} alt="profile" />
       <div>
         <label>닉네임</label>
         <input type="text" className="border-black border-[1px]" />

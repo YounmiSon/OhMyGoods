@@ -1,0 +1,60 @@
+{
+  "productList": [
+    {
+      "id": 1,
+      "product_name": "할짝 농담곰",
+      "price": 2000,
+      "product_img": "./img/goods/01.png",
+      "is_checked": "false"
+    },
+    {
+      "id": 2,
+      "product_name": "노크 농담곰",
+      "price": 1200,
+      "product_img": "./img/goods/02.png",
+      "is_checked": "false"
+    },
+    {
+      "id": 3,
+      "product_name": "울먹 농담곰",
+      "price": 1500,
+      "product_img": "./img/goods/03.png",
+      "is_checked": "false"
+    },
+    {
+      "id": 4,
+      "product_name": "빵 농담곰",
+      "price": 2000,
+      "product_img": "./img/goods/04.png",
+      "is_checked": "false"
+    },
+    {
+      "id": 5,
+      "product_name": "빼꼼 농담곰",
+      "price": 2200,
+      "product_img": "./img/goods/05.png",
+      "is_checked": "false"
+    },
+    {
+      "id": 6,
+      "product_name": "소심 농담곰",
+      "price": 1500,
+      "product_img": "./img/goods/06.png",
+      "is_checked": "false"
+    },
+    {
+      "id": 7,
+      "product_name": "치킨 농담곰",
+      "price": 3000,
+      "product_img": "./img/goods/07.png",
+      "is_checked": "false"
+    },
+    {
+      "id": 8,
+      "product_name": "고양이 농담곰",
+      "price": 3500,
+      "product_img": "./img/goods/08.png",
+      "is_checked": "false"
+    }
+  ]
+}

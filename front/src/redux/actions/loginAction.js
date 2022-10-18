@@ -29,13 +29,16 @@ function login(email, password, nav) {
         email,
         password,
       },
-    });
-    if (user.data) {
-      dispatch({ type: "LOGIN", payload: { email, password } });
-      nav("/");
-    } else {
-      alert("아이디와 비밀번호를 확인하세요");
-    }
+    })
+      .then(function (response) {
+        // handle success
+        dispatch({ type: "LOGIN", payload: { email, password, ...response.data.user } });
+        nav("/");
+      })
+      .catch(() => {
+        console.log(user.data);
+        alert("아이디와 비밀번호를 확인하세요");
+      });
   };
 }
 

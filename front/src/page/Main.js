@@ -1,32 +1,37 @@
 // 여긴 그냥 슬라이드 등등 있는 메인 페이지
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 import "./Main.css";
 import { Pagination, Navigation } from "swiper";
 
 const Main = () => {
   return (
     <>
-      <Swiper
-        pagination={{
-          type: "progressbar",
-        }}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper h-[500px]"
-      >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+      <Swiper pagination={true} navigation={true} modules={[Pagination, Navigation]} className="mySwiper">
+        <SwiperSlide>
+          <img src="./img/ex.jpg" alt="img" className="h-screen" />{" "}
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="./img/ex.jpg" alt="img" className="h-screen" />{" "}
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="./img/ex.jpg" alt="img" className="h-screen" />{" "}
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="./img/ex.jpg" alt="img" className="h-screen" />{" "}
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="./img/ex.jpg" alt="img" className="h-screen" />{" "}
+        </SwiperSlide>
       </Swiper>
+      <div>
+        <div className="h-96 bg-red-200"></div>
+        <div className="h-96 bg-red-200"></div>
+        <div className="h-96 bg-red-200"></div>
+      </div>
     </>
   );
 };

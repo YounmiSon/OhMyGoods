@@ -1,7 +1,7 @@
 // 필요한 모듈 가져오기
 const express = require("express");
 const cors = require("cors");
-const { sequelize, User } = require("./model");
+const { sequelize, User, Post } = require("./model");
 
 // express 호출
 const app = express();
@@ -53,13 +53,13 @@ app.post("/login", async (req, res) => {
     where: { email: email, password: password },
   })
     .then((e) => {
-      if (e.authority === "관리자") {
-        res.send("관리자계정으로 접속하셨습니다");
-      } else if (e.authority === "일반회원") {
-        res.send("하이");
-      }
+      const { nickname, authority } = e.dataValues;
+      const user = { nickname, authority };
+      res.send({ user });
+      console.log(user);
     })
     .catch((err) => {
+      console.log(err);
       res.send(false);
     });
 });
@@ -75,14 +75,14 @@ app.post("/board", (req, res) => {
 app.post("/board/write", async (req, res) => {
   let { title, content, writer } = req.body;
   Post.create({
-    title: title,
-    content: content,
-    writer: writer,
+    title,
+    content,
+    writer,
   })
     .then(() => {
       res.send("글 등록됨");
     })
-    .catch((err) => res.send(err));
+    .catch((err) => console.log(err));
 });
 
 // 마이페이지

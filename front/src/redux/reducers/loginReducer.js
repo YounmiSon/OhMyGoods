@@ -2,6 +2,7 @@
 const init = {
   email: "",
   password: "",
+  nickname: "",
   isLogin: false,
 };
 
@@ -18,6 +19,7 @@ function loginReducer(state = init, action) {
         // 전달 받은 액션을 참고해서 새로운 상태를 만들어 반환한다
         email: payload.email,
         password: payload.pwd,
+        nickname: payload.nickname,
         isLogin: true,
       };
 
