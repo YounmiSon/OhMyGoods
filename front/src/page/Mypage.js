@@ -25,7 +25,6 @@ const Mypage = () => {
           <img className="w-96 my-8 rounded-full" src="/img/default_profile.png" alt="profile" />
         </div>
         <div className="flex flex-col items-center">
-          <h1 className="text-2xl mb-10">마이페이지 : </h1>
           <span className="text-2xl">닉네임 : {nickname}</span>
           {/* <span className="text-2xl">보유포인트: {point}</span>/ */}
         </div>

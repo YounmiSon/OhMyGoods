@@ -37,7 +37,6 @@ function login(email, password, nav) {
         nav("/");
       })
       .catch(() => {
-        console.log(user.data);
         alert("아이디와 비밀번호를 확인하세요");
       });
   };

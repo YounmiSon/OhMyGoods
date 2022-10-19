@@ -22,4 +22,15 @@ function addPost({ title, content, writer }, nav) {
   };
 }
 
-export const boardAction = { addPost };
+function getPost() {
+  return async (dispatch, getState) => {
+    const post = await axios({
+      method: "get",
+      url: "http://localhost:8000/board/",
+    });
+    const { data } = post;
+    dispatch({ type: "GETPOST", payload: data });
+  };
+}
+
+export const boardAction = { addPost, getPost };

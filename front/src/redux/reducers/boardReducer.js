@@ -8,8 +8,16 @@ const init = {
 const boardReducer = (state = init, action) => {
   const { type, payload } = action;
   switch (type) {
+    case "GETPOST": {
+      return {
+        ...state,
+        posts: [...payload],
+      };
+    }
+
     case "ADDPOST":
       const newPost = { ...payload, postId: state.nextPostId };
+      console.log(newPost);
       state.nextPostId++;
       return {
         ...state,

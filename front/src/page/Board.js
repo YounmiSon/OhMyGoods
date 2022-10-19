@@ -1,12 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { boardAction } from "../redux/actions/boardAction";
 const Board = () => {
   const nav = useNavigate();
+  const dispatch = useDispatch();
 
   // posts는 reducer에 있는 초기값([]) posts
   const posts = useSelector((state) => state.boardReducer.posts);
-  
+
+  useEffect(() => {
+    dispatch(boardAction.getPost());
+  }, []);
+
   // 글쓰기 버튼 클릭시 write 페이지로 보내줌
   const writePost = () => {
     nav("/board/write");
@@ -24,14 +30,19 @@ const Board = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="flex justify-evenly items-center text-center h-12 border-[1px] border-b-black">
-              <td></td>
-            </tr>
+            {posts.map(({ postId, title, createdAt, writer }) => (
+              <tr key={postId} className="flex justify-evenly items-center text-center h-12 border-[1px] border-b-black">
+                <td className="p-16">{postId}</td>
+                <td>{title}</td>
+                <td>{writer}</td>
+                <td>{createdAt}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
       <div className="w-4/5">
-        <button className="float-right justify-center items-center bg-yellow-200 p-3 rounded-xl" onClick={writePost}>
+        <button className="float-right justify-center items-center bg-yellow-200 p-3 rounded-xl mt-4" onClick={writePost}>
           글쓰기
         </button>
       </div>

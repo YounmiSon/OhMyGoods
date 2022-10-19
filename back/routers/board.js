@@ -4,7 +4,7 @@ const router = express.Router();
 const { Post } = require("../model");
 
 // 게시판 목록 그리기
-router.post("/", (req, res) => {
+router.get("/", (req, res) => {
   Post.findAll().then((datas) => {
     res.send(datas);
   });
@@ -21,8 +21,8 @@ router.post("/write", async (req, res) => {
       content,
       writer,
     })
-      .then(() => {
-        res.send("글 등록됨");
+      .then((datas) => {
+        res.send(datas);
       })
       .catch((err) => console.log(err));
   }
