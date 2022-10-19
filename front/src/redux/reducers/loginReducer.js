@@ -27,6 +27,7 @@ function loginReducer(state = init, action) {
       return { ...state, email: "", password: "", isLogin: false };
 
     default:
+      // 기존 state를 그대로 반환
       return { ...state };
   }
 }

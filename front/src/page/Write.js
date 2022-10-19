@@ -1,14 +1,15 @@
-// 공지사항 - admin(관리자) 계정만 글 작성할 수 있는 화면
+// 글 작성할 수 있는 화면
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { boardAction } from "../redux/actions/boardAction";
 
-const Write = () => {
+const Write = (props) => {
   const dispatch = useDispatch();
   const nav = useNavigate();
+
+  // writer로 닉네임 가져오기
   const nickname = useSelector((state) => state.loginReducer.nickname);
-  console.log(nickname);
 
   // 입력되는 내용 input state에 정의(?)
   const [inputs, setInputs] = useState({
@@ -30,8 +31,7 @@ const Write = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center mt-28">
-        <label>작성자</label>
-        <span>{nickname}</span>
+        <label>작성자 : {nickname}</label>
         <label className="mt-4">제목</label>
         <input type="text" name="title" value={inputs.title} onChange={inputsHandler} className="border-[1px] border-black w-[50%]" />
         <label className="mt-4">내용</label>

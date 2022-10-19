@@ -1,7 +1,10 @@
 // 필요한 모듈 가져오기
 const express = require("express");
 const cors = require("cors");
+// 모델 가져오기
 const { sequelize, User, Post } = require("./model");
+// 라우터 가져오기
+const { boardRouter } = require("./routers");
 
 // express 호출
 const app = express();
@@ -24,6 +27,9 @@ const options = {
 app.use(express.json());
 // cors options설정
 app.use(cors(options));
+
+// /board 경로에 해당하는 모든 라우터
+app.use("/board", boardRouter);
 
 // 회원가입 데이터
 app.post("/join", async (req, res) => {
@@ -62,27 +68,6 @@ app.post("/login", async (req, res) => {
       console.log(err);
       res.send(false);
     });
-});
-
-// 게시판
-app.post("/board", (req, res) => {
-  Post.findAll().then((datas) => {
-    res.send(datas);
-  });
-});
-
-// 게시판
-app.post("/board/write", async (req, res) => {
-  let { title, content, writer } = req.body;
-  Post.create({
-    title,
-    content,
-    writer,
-  })
-    .then(() => {
-      res.send("글 등록됨");
-    })
-    .catch((err) => console.log(err));
 });
 
 // 마이페이지

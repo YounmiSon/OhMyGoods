@@ -35,7 +35,7 @@ const Nav = ({ isLogin }) => {
         <img
           alt="logo"
           src="./img/icon/logo.png"
-          className="cursor-pointer fixed left-[60px] w-[90px]"
+          className="cursor-pointer fixed left-[50px] w-[90px]"
           onClick={() => {
             nav("/");
           }}

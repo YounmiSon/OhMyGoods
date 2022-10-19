@@ -1,5 +1,5 @@
 // 회원가입 페이지
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginAction } from "../redux/actions/loginAction";
 

@@ -6,7 +6,7 @@ const Board = () => {
 
   // posts는 reducer에 있는 초기값([]) posts
   const posts = useSelector((state) => state.boardReducer.posts);
-
+  
   // 글쓰기 버튼 클릭시 write 페이지로 보내줌
   const writePost = () => {
     nav("/board/write");
