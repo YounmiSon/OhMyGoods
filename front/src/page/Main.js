@@ -12,25 +12,25 @@ const Main = () => {
     <>
       <Swiper pagination={true} navigation={true} modules={[Pagination, Navigation]} className="mySwiper">
         <SwiperSlide>
-          <img src="./img/ex.jpg" alt="img" className="h-screen" />{" "}
+          <img src="./img/ex.jpg" alt="img" className="h-screen" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./img/ex.jpg" alt="img" className="h-screen" />{" "}
+          <img src="./img/ex.jpg" alt="img" className="h-screen" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./img/ex.jpg" alt="img" className="h-screen" />{" "}
+          <img src="./img/ex.jpg" alt="img" className="h-screen" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./img/ex.jpg" alt="img" className="h-screen" />{" "}
+          <img src="./img/ex.jpg" alt="img" className="h-screen" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="./img/ex.jpg" alt="img" className="h-screen" />{" "}
+          <img src="./img/ex.jpg" alt="img" className="h-screen" />
         </SwiperSlide>
       </Swiper>
       <div>
-        <div className="h-96 bg-red-200"></div>
-        <div className="h-96 bg-red-200"></div>
-        <div className="h-96 bg-red-200"></div>
+        <div className="h-screen bg-red-200"></div>
+        <div className="h-screen bg-red-300"></div>
+        <div className="h-screen bg-red-400"></div>
       </div>
     </>
   );

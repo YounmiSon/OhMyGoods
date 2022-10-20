@@ -1,10 +1,9 @@
-// 글 작성할 수 있는 화면
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { boardAction } from "../redux/actions/boardAction";
 
-const Write = () => {
+const Edit = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
@@ -26,7 +25,7 @@ const Write = () => {
 
   // 글 작성 후 제출
   // dispatch 요청 발생하면 boardAction의 addPost함수 실행
-  const submitHandler = () => dispatch(boardAction.addPost({ ...inputs }, nav));
+  const submitHandler = () => dispatch(boardAction.editPost({ ...inputs }, nav));
 
   return (
     <>
@@ -37,11 +36,11 @@ const Write = () => {
         <label className="mt-4">내용</label>
         <textarea name="content" value={inputs.content} onChange={inputsHandler} className="border-[1px] border-black w-[50%] h-80" />
         <button onClick={submitHandler} className="justify-center items-center bg-yellow-200 p-3 rounded-xl mt-4">
-          등록하기
+          수정하기
         </button>
       </div>
     </>
   );
 };
 
-export default Write;
+export default Edit;

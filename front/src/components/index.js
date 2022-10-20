@@ -1,4 +1,4 @@
 import Nav from "./Nav";
 import CartItems from "./CartItems";
-
-export { Nav, CartItems };
+import Pagination from "./Pagination";
+export { Nav, CartItems, Pagination };

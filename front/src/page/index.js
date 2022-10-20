@@ -7,4 +7,6 @@ import EditMyInfo from "./EditMyInfo";
 import Board from "./Board";
 import Write from "./Write";
 import Cart from "./Cart";
-export { Main, Join, Shop, Mypage, Login, EditMyInfo, Board, Write, Cart };
+import Detail from "./Detail";
+import Edit from "./Edit";
+export { Main, Join, Shop, Mypage, Login, EditMyInfo, Board, Write, Cart, Detail, Edit };

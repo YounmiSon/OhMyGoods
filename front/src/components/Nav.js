@@ -55,7 +55,7 @@ const Nav = ({ isLogin }) => {
                     nav("/board");
                   }}
                 >
-                  게시판
+                  공지사항
                 </li>
                 <li
                   className="cursor-pointer"

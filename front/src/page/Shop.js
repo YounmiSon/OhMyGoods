@@ -18,9 +18,12 @@ const Shop = () => {
 
   return (
     <div className="flex justify-center items-center mt-28">
-      <Link to="/shop/cart">
-        <img src="https://cdn-icons-png.flaticon.com/512/6276/6276043.png" alt="cart_icon" className="fixed cursor-pointer w-[80px] absolute top-32 left-20 rounded-full" />
-      </Link>
+      {/* 장바구니는 리모콘으로 따라다니게 스크롤 이벤트 줘보기*/}
+      <div className="fixed w-28 h-28 shadow-lg border-gray border-[1px] top-44 left-0">
+        <Link to="/shop/cart">
+          <img src="https://cdn-icons-png.flaticon.com/512/6276/6276043.png" alt="cart_icon" className="relative ml-3 mt-2 cursor-pointer w-[80px]" />
+        </Link>
+      </div>
       <div className="w-screen flex flex-wrap justify-center items-center">{itemList}</div>
     </div>
   );

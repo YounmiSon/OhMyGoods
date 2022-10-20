@@ -16,13 +16,12 @@ function addPost({ title, content, writer }, nav) {
       alert("공백안됨");
       nav("/board/write");
     } else {
-      console.log(post);
       nav("/board");
     }
   };
 }
 
-function getPost() {
+function getPostAll() {
   return async (dispatch, getState) => {
     const post = await axios({
       method: "get",
@@ -33,4 +32,40 @@ function getPost() {
   };
 }
 
-export const boardAction = { addPost, getPost };
+function getPost(id) {
+  return async (dispatch, getState) => {
+    const post = await axios({
+      method: "post",
+      url: `http://localhost:8000/board/details`,
+      data: {
+        postID: id,
+      },
+    });
+    const { data } = post;
+    dispatch({ type: "GET_POST_DETAILS", payload: data });
+  };
+}
+
+function editPost({ postId, title, content, writer }, nav) {
+  return async (dispatch, getState) => {
+    const post = await axios({
+      method: "post",
+      url: "http://localhost:8000/board/edit",
+      data: {
+        postId,
+        title,
+        content,
+        writer,
+      },
+    });
+    if (title === "" || content === "") {
+      alert("공백안됨");
+      nav("/board/edit");
+    } else {
+      nav("/board");
+    }
+  };
+}
+
+function deletePost() {}
+export const boardAction = { addPost, getPostAll, getPost, editPost, deletePost };

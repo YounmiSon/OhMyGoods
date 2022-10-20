@@ -3,11 +3,19 @@ const init = {
   posts: [],
   login: false,
   loginUser: {},
+  postDetails: {},
 };
 
 const boardReducer = (state = init, action) => {
   const { type, payload } = action;
   switch (type) {
+    case "GET_POST_DETAILS": {
+      return {
+        ...state,
+        postDetails: { ...payload },
+      };
+    }
+
     case "GETPOST": {
       return {
         ...state,
@@ -25,11 +33,11 @@ const boardReducer = (state = init, action) => {
       };
 
     case "DELETEPOST":
-      const deletedPosts = state.posts.filter((post) => post.id !== payload);
+      const deletedPosts = state.posts.filter((post) => post.postId !== payload);
       return { ...state, posts: [...deletedPosts] };
 
     case "EDITPOST":
-      const editedPosts = state.posts.map((post) => (post.id === payload.id ? payload : post));
+      const editedPosts = state.posts.map((post) => (post.postId === payload.postId ? payload : post));
       return { ...state, posts: [...editedPosts] };
 
     default:

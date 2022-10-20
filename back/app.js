@@ -29,6 +29,7 @@ app.use(express.json());
 app.use(cors(options));
 // /board 경로에 해당하는 모든 라우터
 app.use("/board", boardRouter);
+
 // 회원가입 데이터
 app.post("/join", async (req, res) => {
   let { email, nickname, password } = req.body;
@@ -60,7 +61,6 @@ app.post("/login", async (req, res) => {
       const { nickname, authority } = e.dataValues;
       const user = { nickname, authority };
       res.send({ user });
-      console.log(user);
     })
     .catch((err) => {
       console.log(err);
