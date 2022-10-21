@@ -28,9 +28,9 @@ const Main = () => {
         </SwiperSlide>
       </Swiper>
       <div>
-        <div className="h-screen bg-red-200"></div>
-        <div className="h-screen bg-red-300"></div>
-        <div className="h-screen bg-red-400"></div>
+        <div className="h-screen bg-indigo-200"></div>
+        <div className="h-screen bg-indigo-300"></div>
+        <div className="h-screen bg-indigo-400"></div>
       </div>
     </>
   );

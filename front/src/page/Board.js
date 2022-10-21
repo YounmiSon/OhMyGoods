@@ -69,7 +69,7 @@ const Board = (postId) => {
         <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={setCurrentPage}></Pagination>
       </div>
       <div className="w-4/5">
-        <button className="float-right justify-center items-center bg-yellow-200 p-3 rounded-xl my-4" onClick={writePost}>
+        <button className="float-right justify-center items-center bg-purple-100 p-3 rounded-xl my-4" onClick={writePost}>
           글쓰기
         </button>
       </div>

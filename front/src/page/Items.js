@@ -6,7 +6,7 @@ const Items = ({ item }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="w-[340px] h-[450px] m-6 rounded-xl bg-yellow-200">
+    <div className="w-[340px] h-[450px] m-6 rounded-xl bg-indigo-100">
       <div className="flex justify-center items-center">
         <img className="mt-6 rounded-xl" alt="product" src={item.product_img} />
       </div>
