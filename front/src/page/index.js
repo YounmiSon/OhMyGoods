@@ -9,4 +9,6 @@ import Write from "./Write";
 import Cart from "./Cart";
 import Detail from "./Detail";
 import Edit from "./Edit";
-export { Main, Join, Shop, Mypage, Login, EditMyInfo, Board, Write, Cart, Detail, Edit };
+import AddItems from "./AddItems";
+import Admin from "./Admin";
+export { Main, Join, Shop, Mypage, Login, EditMyInfo, Board, Write, Cart, Detail, Edit, AddItems, Admin };

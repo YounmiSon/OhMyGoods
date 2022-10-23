@@ -2,14 +2,20 @@ const init = {
   items: [],
 };
 
-const cartReducer = (state = init, action) => {
+function cartReducer(state = init, action) {
   const { type, payload } = action;
+
   switch (type) {
-    case "ADDCART":
-      return { ...state, items: payload.items };
+    case "ADD_ITEM":
+      return {
+        // 현재의 상태
+        ...state,
+        items: payload.items,
+      };
 
     default:
       return { ...state };
   }
-};
+}
+
 export default cartReducer;

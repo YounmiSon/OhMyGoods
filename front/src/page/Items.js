@@ -1,7 +1,7 @@
 // SHOP에 진열할 물건들
 import React from "react";
 import { useDispatch } from "react-redux";
-
+import { cartActions } from "../redux/actions/cartActions";
 const Items = ({ item }) => {
   const dispatch = useDispatch();
 
@@ -16,11 +16,11 @@ const Items = ({ item }) => {
         <button
           onClick={() => {
             console.log("!!!");
-            dispatch({ type: "ADDCART", payload: Items });
+            dispatch(cartActions.addCart(item));
           }}
           className="bg-white rounded-lg p-2 text-m"
         >
-          장바구니
+          구매
         </button>
       </div>
     </div>

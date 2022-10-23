@@ -28,10 +28,7 @@ const Board = (postId) => {
     return currentPosts;
   };
   const clickPost = (postId) => nav(`/board/${postId}`, { state: { id: postId } });
-  // 글쓰기 버튼 클릭시 write 페이지로 보내줌
-  const writePost = () => {
-    nav("/board/write");
-  };
+
   return (
     <>
       <div className="flex justify-center items-center mt-28">
@@ -67,11 +64,6 @@ const Board = (postId) => {
       </div>
       <div className="flex justify-center items-center">
         <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={setCurrentPage}></Pagination>
-      </div>
-      <div className="w-4/5">
-        <button className="float-right justify-center items-center bg-purple-100 p-3 rounded-xl my-4" onClick={writePost}>
-          글쓰기
-        </button>
       </div>
     </>
   );

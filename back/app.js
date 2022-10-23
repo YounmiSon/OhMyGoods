@@ -68,6 +68,22 @@ app.post("/login", async (req, res) => {
     });
 });
 
+// 장바구니
+app.post("/shop/cart", async (req, res) => {
+  let { items } = req.body;
+  const product = await Product.findOne({
+    where: { productsId: items },
+  })
+    .then((e) => {
+      console.log(product);
+      res.send(e);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(false);
+    });
+});
+
 // 마이페이지
 app.post("/mypage", (req, res) => {
   User.findOne({
