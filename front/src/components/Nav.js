@@ -52,6 +52,14 @@ const Nav = ({ isLogin }) => {
                 <li
                   className="cursor-pointer"
                   onClick={() => {
+                    nav("/admin");
+                  }}
+                >
+                  관리자
+                </li>
+                <li
+                  className="cursor-pointer"
+                  onClick={() => {
                     nav("/board");
                   }}
                 >

@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Main, Login, Join, Mypage, EditMyInfo, Shop, Board, Write, Cart, Detail, Edit } from "./page";
+import { Main, Login, Join, Mypage, EditMyInfo, Shop, Board, Write, Cart, Detail, Edit, AddItems, Admin } from "./page";
 import { Nav } from "./components";
 function App() {
   // useSelector가 useState의 역할을 한다고 했는데
@@ -22,10 +22,12 @@ function App() {
       <Nav isLogin={isLogin} />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
         <Route path="/shop" element={<LoginRedirect />} isLogin={isLogin} />
-        <Route path="/shop/*" element={<Cart />} isLogin={isLogin} />
+        <Route path="/shop/cart" element={<Cart />} isLogin={isLogin} />
+        <Route path="/shop/add" element={<AddItems />} isLogin={isLogin} />
         <Route path="/mypage" element={<Mypage />} isLogin={isLogin} />
         <Route path="/mypage/*" element={<EditMyInfo />} isLogin={isLogin} />
         <Route path="/board" element={<Board />} />
