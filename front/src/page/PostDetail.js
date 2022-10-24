@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { boardAction } from "../redux/actions/boardAction";
 
-const Detail = () => {
+const PostDetail = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -26,9 +26,13 @@ const Detail = () => {
 
   // post 삭제
   const deletePost = () => {
-    
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      dispatch(boardAction.deletePost(location.pathname.split("/board/")[1]));
+      window.location.href = "/board";
+    } else {
+      window.location.reload();
+    }
   };
-
   return (
     <>
       <div className="flex flex-col justify-center items-center mt-28 ">
@@ -53,4 +57,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default PostDetail;

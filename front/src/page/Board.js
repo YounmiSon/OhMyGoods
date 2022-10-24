@@ -3,31 +3,38 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../components/Pagination";
 import { boardAction } from "../redux/actions/boardAction";
-const Board = (postId) => {
+const Board = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
   // posts는 reducer에 있는 초기값([]) posts
   const posts = useSelector((state) => state.boardReducer.posts);
-  // const id = useSelector((state) => state.boardReducer.nextPostId);
 
   // boardAction에 있는 getPost함수 실행
   useEffect(() => {
     dispatch(boardAction.getPostAll());
   }, []);
 
-  // 페이지 네이션
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
-
-  const indexOfLast = currentPage * postsPerPage;
-  const indexOfFirst = indexOfLast - postsPerPage;
-  const currentPosts = (posts) => {
-    let currentPosts = 0;
-    currentPosts = posts.slice(indexOfFirst, indexOfLast);
-    return currentPosts;
-  };
+  // postId 인자로 받아서 글 가져오기
   const clickPost = (postId) => nav(`/board/${postId}`, { state: { id: postId } });
+
+  // 페이지 네이션
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [postsPerPage, setPostsPerPage] = useState(5);
+
+  const currentPage = useSelector((state) => state.boardReducer.currentPage);
+  const postsPerPage = useSelector((state) => state.boardReducer.postsPerPage);
+  const currentPosts = useSelector((state) => state.boardReducer.currentPosts);
+  const setCurrentPage = () => dispatch(boardAction.setPage());
+
+  // const indexOfLast = currentPage * postsPerPage;
+  // const indexOfFirst = indexOfLast - postsPerPage;
+
+  // const currentPosts = (posts) => {
+  //   let currentPosts = 0;
+  //   currentPosts = posts.slice(indexOfFirst, indexOfLast);
+  //   return currentPosts;
+  // };
 
   return (
     <>

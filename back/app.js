@@ -2,9 +2,9 @@
 const express = require("express");
 const cors = require("cors");
 // 모델 가져오기
-const { sequelize, User, Post } = require("./model");
+const { sequelize, User, Post, Product } = require("./model");
 // 라우터 가져오기
-const { boardRouter } = require("./routers");
+const { boardRouter, shopRouter } = require("./routers");
 
 // express 호출
 const app = express();
@@ -29,6 +29,7 @@ app.use(express.json());
 app.use(cors(options));
 // /board 경로에 해당하는 모든 라우터
 app.use("/board", boardRouter);
+app.use("/shop", shopRouter);
 
 // 회원가입 데이터
 app.post("/join", async (req, res) => {
@@ -58,8 +59,8 @@ app.post("/login", async (req, res) => {
     where: { email: email, password: password },
   })
     .then((e) => {
-      const { nickname, authority } = e.dataValues;
-      const user = { nickname, authority };
+      const { nickname, authority, point } = e.dataValues;
+      const user = { nickname, authority, point };
       res.send({ user });
     })
     .catch((err) => {

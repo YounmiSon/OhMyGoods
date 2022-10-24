@@ -4,6 +4,9 @@ const init = {
   login: false,
   loginUser: {},
   postDetails: {},
+  currentPage: 1,
+  postsPerPage: 10,
+  currentPosts: 0,
 };
 
 const boardReducer = (state = init, action) => {
@@ -39,6 +42,11 @@ const boardReducer = (state = init, action) => {
     case "EDITPOST":
       const editedPosts = state.posts.map((post) => (post.postId === payload.postId ? payload : post));
       return { ...state, posts: [...editedPosts] };
+
+    case "SET_PAGE":
+      const indexOfLast = state.currentPage * state.postsPerPage;
+      const indexOfFirst = indexOfLast - state.postsPerPage;
+      return { ...state, currentPosts: state.posts.slice(indexOfFirst, indexOfLast) };
 
     default:
       return { ...state };

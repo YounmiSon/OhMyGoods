@@ -3,7 +3,9 @@ const init = {
   email: "",
   password: "",
   nickname: "",
+  point: "",
   isLogin: false,
+  isAdmin: false,
 };
 
 // 리듀서 함수 정의, 파라미터로 state, action을 받는다
@@ -20,6 +22,7 @@ function loginReducer(state = init, action) {
         email: payload.email,
         password: payload.pwd,
         nickname: payload.nickname,
+        point: payload.point,
         isLogin: true,
       };
 

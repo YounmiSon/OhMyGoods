@@ -32,7 +32,6 @@ function login(email, password, nav) {
       },
     })
       .then(function (response) {
-        // handle success
         dispatch({ type: "LOGIN", payload: { email, password, ...response.data.user } });
         nav("/");
       })

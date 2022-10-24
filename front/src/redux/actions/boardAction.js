@@ -67,5 +67,18 @@ function editPost({ postId, title, content, writer }, nav) {
   };
 }
 
-function deletePost() {}
+function deletePost(id) {
+  return async (dispatch, getState) => {
+    const post = await axios({
+      method: "get",
+      url: `http://localhost:8000/board/delete/${id}`,
+      data: {
+        postID: id,
+      },
+    });
+    const { data } = post;
+    dispatch({ type: "DELETEPOST", payload: data });
+  };
+}
+
 export const boardAction = { addPost, getPostAll, getPost, editPost, deletePost };

@@ -1,3 +1,3 @@
 const boardRouter = require("./board");
-
-module.exports = { boardRouter };
+const shopRouter = require("./shop");
+module.exports = { boardRouter, shopRouter };

@@ -31,7 +31,6 @@ router.post("/write", async (req, res) => {
 // 글 조회하기
 router.post("/details", (req, res) => {
   let { postID } = req.body;
-  console.log("#$#@$@$@#$" + postID);
   Post.findOne({
     where: { postId: postID },
   })
@@ -50,7 +49,7 @@ router.get("/delete/:id", (req, res) => {
     },
   })
     .then(() => {
-      res.send("지워짐");
+      res.redirect("/board");
     })
     .catch(() => {
       console.log(err);
