@@ -10,6 +10,11 @@ class Product extends Sequelize.Model {
           autoIncrement: true,
           unique: true,
         },
+        productsImg: {
+          type: Sequelize.STRING,
+          allowNull: true,
+          BLOB: true,
+        },
         productsName: {
           type: Sequelize.STRING(100),
           allowNull: false,
@@ -22,7 +27,7 @@ class Product extends Sequelize.Model {
           type: Sequelize.STRING(100),
           allowNull: false,
         },
-        isLiked: {
+        isSelected: {
           type: Sequelize.BOOLEAN,
           allowNull: false,
         },

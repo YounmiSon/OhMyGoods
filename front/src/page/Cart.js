@@ -9,12 +9,23 @@ const Cart = () => {
   const CartItems =
     cart.length >= 1 ? (
       cart.map((item, idx) => {
-        return <CartItems key={idx} item={item} idx={idx} />;
+        return (
+          <>
+            <CartItems key={idx} item={item} idx={idx} />
+            <button>구매하기</button>
+          </>
+        );
       })
     ) : (
       <div>장바구니가 비어 있습니다</div>
     );
-  return <div className="flex flex-col justify-center items-center mt-28">{CartItems}</div>;
+  return (
+    <>
+      <div className="flex flex-col justify-center items-center mt-28">
+        <div>{CartItems}</div>
+      </div>
+    </>
+  );
 };
 
 export default Cart;

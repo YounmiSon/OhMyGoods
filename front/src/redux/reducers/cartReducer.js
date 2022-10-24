@@ -1,17 +1,28 @@
 const init = {
   items: [],
+  productDetails: {},
+  isSelected: false,
 };
 
 function cartReducer(state = init, action) {
   const { type, payload } = action;
-
   switch (type) {
-    case "ADD_ITEM":
+    case "ADDCART":
+      return { ...state, isSelected: true };
+
+    case "GETPRODUCT":
+      return { ...state, items: [...payload] };
+
+    case "GET_PRODUCT_DETAILS": {
       return {
-        // 현재의 상태
         ...state,
-        items: payload.items,
+        productDetails: { ...payload },
       };
+    }
+
+    case "DELETEPRODUCT":
+      const deletedProducts = state.items.filter((item) => item.productsId !== payload);
+      return { ...state, items: [...deletedProducts] };
 
     default:
       return { ...state };
