@@ -2,7 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 // 모델 가져오기
-const { sequelize, User, Post, Product } = require("./model");
+const { sequelize, User } = require("./model");
 // 라우터 가져오기
 const { boardRouter, shopRouter } = require("./routers");
 
@@ -37,6 +37,8 @@ app.post("/join", async (req, res) => {
   const users = await User.findOne({
     where: { email: email },
   });
+  // console.log(req.body.email);
+  // console.log(users.dataValues.email);
   if (!users) {
     User.create({
       email: email,
@@ -45,10 +47,10 @@ app.post("/join", async (req, res) => {
       authority: "일반회원",
       point: 1000,
     }).then(() => {
-      res.send("가입을 축하합니다");
+      res.send(users);
     });
   } else {
-    res.send("이미 존재하는 이메일입니다");
+    res.send(users);
   }
 });
 
@@ -69,22 +71,6 @@ app.post("/login", async (req, res) => {
     });
 });
 
-// 장바구니
-app.post("/shop/cart", async (req, res) => {
-  let { items } = req.body;
-  const product = await Product.findOne({
-    where: { productsId: items },
-  })
-    .then((e) => {
-      console.log(product);
-      res.send(e);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send(false);
-    });
-});
-
 // 마이페이지
 app.post("/mypage", (req, res) => {
   User.findOne({
@@ -93,6 +79,14 @@ app.post("/mypage", (req, res) => {
     },
   }).then((e) => {
     res.send({ data: e });
+  });
+});
+
+// 관리자 페이지
+app.get("/admin", (req, res) => {
+  User.findAll().then((datas) => {
+    console.log(datas + "!@121212");
+    res.send(datas);
   });
 });
 

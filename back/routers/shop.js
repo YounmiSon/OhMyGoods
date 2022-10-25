@@ -54,4 +54,19 @@ router.get("/delete/:id", (req, res) => {
     });
 });
 
+// 장바구니
+router.post("/cart", async (req, res) => {
+  let { items } = req.body;
+  const product = await Product.findOne({
+    where: { productsId: items },
+  })
+    .then((e) => {
+      console.log(product);
+      res.send(e);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(false);
+    });
+});
 module.exports = router;
