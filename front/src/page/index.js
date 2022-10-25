@@ -11,5 +11,7 @@ import PostDetail from "./PostDetail";
 import Edit from "./Edit";
 import AddItems from "./AddItems";
 import Admin from "./Admin";
+import AdminUser from "./AdminUser";
+import AdminBoard from "./AdminBoard";
 import ProductDetail from "./ProductDetail";
-export { Main, Join, Shop, Mypage, Login, EditMyInfo, Board, Write, Cart, PostDetail, ProductDetail, Edit, AddItems, Admin };
+export { Main, Join, Shop, Mypage, Login, EditMyInfo, Board, Write, Cart, PostDetail, ProductDetail, Edit, AddItems, AdminUser, AdminBoard, Admin };

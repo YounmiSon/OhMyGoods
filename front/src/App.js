@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Main, Login, Join, Mypage, EditMyInfo, Shop, Board, Write, Cart, ProductDetail, PostDetail, Edit, AddItems, Admin } from "./page";
+import { Main, Login, Join, Mypage, EditMyInfo, Shop, Board, Write, Cart, ProductDetail, PostDetail, Edit, AddItems, Admin, AdminUser, AdminBoard } from "./page";
 import { Nav } from "./components";
 function App() {
   // useSelector가 useState의 역할을 한다고 했는데
@@ -8,7 +8,9 @@ function App() {
   // 그럼 걔의 상태를 바꾸겠다는 뜻임
   // 여기서 state는 combineReducer로 묶인 모든 reducer의 state로 모든 초기값을 호출함
   // 그니까 특정 리듀서의 state만 가져오고 싶으면 뒤에 등록된 리듀서 이름으로 호출해줘야 함
+
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
+  // const isAdmin = useSelector((state) => state.loginReducer.isAdmin);
 
   const LoginRedirect = () => {
     return isLogin === true ? <Shop /> : loginMessage();
@@ -23,6 +25,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/user" element={<AdminUser />} />
+        <Route path="/admin/board" element={<AdminBoard />} />
+        <Route path="/admin/board/write" element={<Write />} isLogin={isLogin} />
+        <Route path="/admin/board/edit" element={<Edit />} isLogin={isLogin} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
         <Route path="/shop" element={<LoginRedirect />} isLogin={isLogin} />
@@ -32,9 +38,7 @@ function App() {
         <Route path="/mypage" element={<Mypage />} isLogin={isLogin} />
         <Route path="/mypage/*" element={<EditMyInfo />} isLogin={isLogin} />
         <Route path="/board" element={<Board />} />
-        <Route path="/board/write" element={<Write />} isLogin={isLogin} />
         <Route path="/board/:id" element={<PostDetail />} isLogin={isLogin} />
-        <Route path="/board/edit" element={<Edit />} isLogin={isLogin} />
       </Routes>
     </>
   );

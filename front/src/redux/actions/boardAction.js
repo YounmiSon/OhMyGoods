@@ -5,7 +5,7 @@ function addPost({ title, content, writer }, nav) {
   return async (dispatch, getState) => {
     const post = await axios({
       method: "post",
-      url: "http://localhost:8000/board/write",
+      url: "http://localhost:8000/admin/board/write",
       data: {
         title,
         content,
@@ -14,7 +14,7 @@ function addPost({ title, content, writer }, nav) {
     });
     if (title === "" || content === "") {
       alert("공백안됨");
-      nav("/board/write");
+      nav("/admin/board/write");
     } else {
       nav("/board");
     }
@@ -50,7 +50,7 @@ function editPost({ postId, title, content, writer }, nav) {
   return async (dispatch, getState) => {
     const post = await axios({
       method: "post",
-      url: "http://localhost:8000/board/edit",
+      url: "http://localhost:8000/admin/board/edit",
       data: {
         postId,
         title,
@@ -60,9 +60,9 @@ function editPost({ postId, title, content, writer }, nav) {
     });
     if (title === "" || content === "") {
       alert("공백안됨");
-      nav("/board/edit");
+      nav("/admin/board/edit");
     } else {
-      nav("/board");
+      nav("/admin/board");
     }
   };
 }
@@ -71,7 +71,7 @@ function deletePost(id) {
   return async (dispatch, getState) => {
     const post = await axios({
       method: "get",
-      url: `http://localhost:8000/board/delete/${id}`,
+      url: `http://localhost:8000/admin/board/${id}`,
       data: {
         postID: id,
       },
