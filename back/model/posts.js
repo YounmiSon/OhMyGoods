@@ -32,7 +32,6 @@ class Post extends Sequelize.Model {
   }
   static associate(db) {
     db.Post.belongsTo(db.User, { foreignKey: "writer", targetKey: "nickname" });
-    db.Post.hasMany(db.Comment, { foreignKey : "postId", sourceKey : "postId" });
   }
 }
 

@@ -5,7 +5,7 @@ class User extends Sequelize.Model {
     return super.init(
       {
         userId:{
-          type: Sequelize.INTEGER, 
+          type: Sequelize.INTEGER,
           allowNull: false,
           autoIncrement: true,
           unique: true
@@ -51,6 +51,7 @@ class User extends Sequelize.Model {
   }
   static associate(db) {
     db.User.hasMany(db.Post, { foreignKey: "writer", sourceKey: "nickname" });
+    db.User.hasMany(db.Cart, { foreignKey: "userId", sourceKey: "userId" });
   }
 }
 
