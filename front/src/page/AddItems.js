@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { UploadImg } from "../components";
 import { cartAction } from "../redux/actions/cartAction";
 
 const AddItems = () => {
-  const dispatch = useDispatch();
-  const nav = useNavigate();
-
   const [inputs, setInputs] = useState({
     productsName: "",
     productsPrice: "",
@@ -19,7 +17,6 @@ const AddItems = () => {
     setInputs({ ...inputs, [name]: value });
   };
 
-  const registerItem = () => dispatch(cartAction.addItems({ ...inputs }, nav));
   return (
     <>
       <div className="flex flex-col justify-center items-center mt-28">
@@ -43,12 +40,11 @@ const AddItems = () => {
           <div>
             <label>상품 사진</label>
             <br />
-            <input type="file" name="productImg" onChange={inputsHandler} value={inputs.productsImg} className="w-96 h-10" />
+            {/* inputs props로 전달 */}
+            <UploadImg inputs={inputs} />
+            {/* <input type="file" name="productImg" onChange={inputsHandler} value={inputs.productsImg} className="w-96 h-10" /> */}
           </div>
         </div>
-        <button onClick={registerItem} className="bg-indigo-100 p-4 rounded-xl">
-          등록하기
-        </button>
       </div>
     </>
   );

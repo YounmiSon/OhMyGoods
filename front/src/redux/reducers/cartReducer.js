@@ -7,6 +7,15 @@ const init = {
 function cartReducer(state = init, action) {
   const { type, payload } = action;
   switch (type) {
+
+    case "ADDPRODUCT":
+      const newProduct = { ...payload };
+      console.log(newProduct);
+      return {
+        ...state,
+        items: [...state.items, newProduct],
+      }; 
+
     case "ADDCART":
       return { ...state, isSelected: true };
 

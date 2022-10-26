@@ -1,24 +1,14 @@
 import axios from "axios";
 
 // 물건 등록하기
-function addItems({ productsName, productsPrice, productsDetail, productsImg }, nav) {
+function addItems(formData, config, nav) {
   return async (dispatch, getState) => {
     const product = await axios({
       method: "post",
       url: "http://localhost:8000/shop/add",
-      data: {
-        productsName,
-        productsPrice,
-        productsDetail,
-        productsImg,
-      },
+      data: formData,
+      config,
     });
-    if (productsName === "" || productsPrice === "" || productsDetail === "" || productsImg === "") {
-      alert("필수입력사항 입니다");
-      nav("/shop/add");
-    } else {
-      nav("/shop");
-    }
   };
 }
 

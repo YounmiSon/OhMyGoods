@@ -25,6 +25,7 @@ const options = {
 
 // 전달 받은 객체 형태를 해석해서 사용할 수 있게 설정
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 // cors options설정
 app.use(cors(options));
 // 경로에 해당하는 모든 라우터
