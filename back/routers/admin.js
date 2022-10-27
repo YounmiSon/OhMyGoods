@@ -9,20 +9,34 @@ router.get("/user", (req, res) => {
     res.send(datas);
   });
 });
-
-// 글 삭제하기
-router.get("/board/:id", (req, res) => {
-  let postID = req.params.id;
-  Post.destroy({
+router.get("/user/:id", (req, res) => {
+  let userId = req.params.id;
+  User.destroy({
     where: {
-      postId: postID,
+      userId: userId,
     },
   })
-    .then(() => {
-      res.redirect("/admin/board");
+    .then((status) => {
+      res.sendStatus(status);
     })
     .catch(() => {
-      console.log("err");
+      console.log("****err");
+    });
+});
+
+// 글 삭제하기
+router.get("/board/delete/:id", (req, res) => {
+  let postId = req.params.id;
+  Post.destroy({
+    where: {
+      postId: postId,
+    },
+  })
+    .then((status) => {
+      res.sendStatus(status);
+    })
+    .catch(() => {
+      console.log("****err");
     });
 });
 

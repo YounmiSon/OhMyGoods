@@ -8,17 +8,15 @@ const AdminBoard = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  // 유저 정보 가져오기
   const posts = useSelector((state) => state.boardReducer.posts);
-
   useEffect(() => {
     dispatch(boardAction.getPostAll());
   }, []);
 
-  const deletePost = () => {
+  const deletePost = (postId) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      dispatch(boardAction.deletePost(location.pathname.split("/admin/board/")[1]));
-      window.location.reload();
+      dispatch(boardAction.deletePost(postId));
+      alert("삭제완료");
     } else {
       window.location.href = "/admin/board";
     }
@@ -36,9 +34,10 @@ const AdminBoard = () => {
         <div className="flex flex-col justify-center items-center">
           <table className="w-[900px]">
             <thead>
-              <tr className="grid-rows-5 text-center bg-gray-100 h-12 border-[1px] border-b-black">
+              <tr className="text-center bg-gray-100 h-12 border-[1px] border-b-black">
+                <td>번호</td>
                 <td>제목</td>
-                <td>내용</td>
+                <td className="w-[200px] text-ellipsis overflow-hidden whitespace-nowrap">내용</td>
                 <td>작성일</td>
                 <td>삭제</td>
                 <td>수정</td>
@@ -47,10 +46,16 @@ const AdminBoard = () => {
             <tbody>
               {posts.map(({ content, title, createdAt, postId }, idx) => (
                 <tr key={idx} className="text-center h-12 border-[1px] border-b-black">
+                  <td>{postId}</td>
                   <td>{title}</td>
                   <td>{content}</td>
                   <td>{createdAt}</td>
-                  <td onClick={deletePost} className="cursor-pointer font-extrabold">
+                  <td
+                    onClick={(e) => {
+                      deletePost(postId);
+                    }}
+                    className="cursor-pointer font-extrabold"
+                  >
                     삭제
                   </td>
                   <td onClick={editPost} className="cursor-pointer font-extrabold">

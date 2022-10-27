@@ -9,14 +9,19 @@ const AdminUser = () => {
 
   // 유저 정보 가져오기
   const users = useSelector((state) => state.loginReducer.users);
-
   useEffect(() => {
     dispatch(loginAction.getUser());
   }, []);
 
-  const deleteUser = () => {
-    console.log("삭제하자");
+  const deleteUser = (userId) => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      dispatch(loginAction.deleteUser(userId));
+      alert("삭제완료");
+    } else {
+      window.location.href = "/admin/user";
+    }
   };
+
   return (
     <>
       <div className="flex flex-col justify-center items-center mt-28">
@@ -33,12 +38,17 @@ const AdminUser = () => {
             </thead>
             <tbody>
               {/* {users} */}
-              {users.map(({ email, nickname, createdAt }, idx) => (
+              {users.map(({ email, nickname, createdAt, userId }, idx) => (
                 <tr key={idx} className="text-center h-12 border-[1px] border-b-black">
                   <td>{email}</td>
                   <td>{nickname}</td>
                   <td>{createdAt}</td>
-                  <td onClick={deleteUser} className="cursor-pointer font-extrabold">
+                  <td
+                    onClick={(e) => {
+                      deleteUser(userId);
+                    }}
+                    className="cursor-pointer font-extrabold"
+                  >
                     삭제
                   </td>
                 </tr>

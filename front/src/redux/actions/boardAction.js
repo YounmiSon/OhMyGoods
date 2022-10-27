@@ -59,7 +59,7 @@ function editPost({ postId, title, content, writer }, nav) {
       },
     });
     if (title === "" || content === "") {
-      alert("공백안됨");
+      alert("내용을 입력해주세요");
       nav("/admin/board/edit");
     } else {
       nav("/admin/board");
@@ -67,13 +67,13 @@ function editPost({ postId, title, content, writer }, nav) {
   };
 }
 
-function deletePost(id) {
+function deletePost(postId) {
   return async (dispatch, getState) => {
     const post = await axios({
       method: "get",
-      url: `http://localhost:8000/admin/board/${id}`,
+      url: `http://localhost:8000/admin/board/delete/${postId}`,
       data: {
-        postID: id,
+        postId,
       },
     });
     const { data } = post;
