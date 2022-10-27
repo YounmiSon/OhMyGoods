@@ -8,6 +8,8 @@ const Shop = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cartReducer.items);
+  const productDetails = useSelector((state) => state.cartReducer.productDetails);
+  const uploader = productDetails.uploader;
 
   useEffect(() => {
     dispatch(cartAction.getProductAll());
@@ -30,12 +32,12 @@ const Shop = () => {
 
       <div className="w-screen flex flex-wrap justify-center items-center">
         {items.map(({ productsImg, productsId, productsName, productsPrice }, idx) => (
-          <div key={idx} className="w-[340px] h-[450px] m-6 rounded-xl bg-indigo-100">
+          <div key={idx} className="w-[340px] h-[450px] m-6 rounded-xl bg-[#816bff]/20">
             <div className="flex flex-col items-center justify-center mx-10 mt-3">
               <div className="flex justify-center items-center">
-                <img className="mt-6 rounded-xl" alt="product" src={productsImg} />
+                <img className="w-[250px] h-[250px] mt-6 rounded-xl bg-white" alt="product" src={productsImg} />
               </div>
-              <div className=" text-center w-[250px] h-[70px] mt-6">
+              <div className=" text-center w-[250px] h-[70px] mt-7">
                 <h1 className="text-center font-bold text-2xl">{productsName}</h1>
                 <div className="text-xl pt-1">{productsPrice}P</div>
               </div>
@@ -54,6 +56,7 @@ const Shop = () => {
                     showProductDetail(productsId);
                   }}
                   className="bg-white rounded-lg p-2 text-m"
+                  uploader={uploader}
                 >
                   상세보기
                 </button>

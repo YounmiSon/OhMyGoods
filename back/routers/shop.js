@@ -51,7 +51,7 @@ router.post("/add", upload.single("file"), (req, res) => {
       productsName,
       productsPrice,
       productsDetail,
-      productsImg,
+      productsImg: "http://localhost:8000/img/" + req.file.filename,
     })
       .then((datas) => {
         res.send(datas);
@@ -81,7 +81,7 @@ router.get("/delete/:id", (req, res) => {
     },
   })
     .then(() => {
-      res.redirect("/shop");
+      res.send("성공");
     })
     .catch((err) => {
       console.log(err);
