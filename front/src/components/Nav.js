@@ -5,7 +5,7 @@ import { loginAction } from ".././redux/actions/loginAction";
 import { useDispatch } from "react-redux";
 import "./Nav.css";
 
-const Nav = ({ isLogin }) => {
+const Nav = ({ isAdmin, isLogin }) => {
   const nav = useNavigate();
   const dispatch = useDispatch();
   // 로그아웃 버튼 눌렀을 때 실행되는 함수
@@ -34,14 +34,14 @@ const Nav = ({ isLogin }) => {
       <nav className={`nav ${show && "nav__black"}`}>
         <img
           alt="logo"
-          src="./img/icon/logo.png"
+          src="/img/icon/logo.png"
           className="cursor-pointer fixed left-[50px] w-[90px]"
           onClick={() => {
             nav("/");
           }}
         />
-        <div className="ml-[200px] w-[30%] mt-[5px]">
-          <ul className="list-none flex justify-evenly items-center bg-transparent h-[48px]">
+        <div className="ml-[200px] w-2/5 mt-[5px]">
+          <ul className="nav-bar list-none flex justify-evenly items-center bg-transparent h-[48px]">
             {/* 
         로그인 상태일때만 보여지는 nav 메뉴
         isLogin은 loginReducer에서 초기값으로 설정함
@@ -49,14 +49,14 @@ const Nav = ({ isLogin }) => {
         */}
             {isLogin ? (
               <>
-                <li
+              {isAdmin ?  <li
                   className="cursor-pointer"
                   onClick={() => {
                     nav("/admin");
                   }}
                 >
                   관리자
-                </li>
+                </li> : ""}
                 <li
                   className="cursor-pointer"
                   onClick={() => {

@@ -11,6 +11,7 @@ function App() {
 
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
   const isAdmin = useSelector((state) => state.loginReducer.isAdmin);
+  const nickname = useSelector((state) => state.loginReducer.nickname);
 
   // 상점
   const ShopRedirect = () => {
@@ -70,7 +71,7 @@ function App() {
   }
   return (
     <>
-      <Nav isLogin={isLogin} />
+      <Nav isLogin={isLogin} isAdmin={isAdmin} />
       <Routes>
         {/* 비로그인 접근 */}
         <Route path="/" element={<Main />} />
@@ -85,7 +86,7 @@ function App() {
         {/* 상점 */}
         <Route path="/shop" element={<ShopRedirect />} isLogin={isLogin} />
         <Route path="/shop/cart" element={<CartRedirect />} isLogin={isLogin} />
-        <Route path="/shop/add" element={<AddItemsRedirect />} isLogin={isLogin} />
+        <Route path="/shop/add" element={<AddItemsRedirect />} isLogin={isLogin} nickname={nickname} />
         <Route path="/shop/:id" element={<ProductDetailRedirect />} isLogin={isLogin} />
         {/* 마이페이지 */}
         <Route path="/mypage" element={<MypageRedirect />} isLogin={isLogin} />
