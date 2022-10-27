@@ -1,9 +1,11 @@
 // 초기값 설정
 const init = {
+  users: [],
   email: "",
   password: "",
   nickname: "",
   point: "",
+  authority: "",
   isLogin: false,
   isAdmin: false,
 };
@@ -15,19 +17,32 @@ function loginReducer(state = init, action) {
   // 여기서 type이름 바로 지정하고 함수를 정의해줌
   switch (type) {
     case "LOGIN":
+      const { nickname, point, authority } = payload.data.user;
       return {
         // 현재의 상태
         ...state,
         // 전달 받은 액션을 참고해서 새로운 상태를 만들어 반환한다
         email: payload.email,
         password: payload.pwd,
-        nickname: payload.nickname,
-        point: payload.point,
+        nickname: nickname,
+        point: point,
+        authority: authority,
         isLogin: true,
+        isAdmin: authority === "관리자" ? true : false,
       };
 
     case "LOGOUT":
-      return { ...state, email: "", password: "", isLogin: false };
+      return { ...state, email: "", password: "", nickname: "", point: 0, authority: false, isLogin: false, isAdmin: false };
+
+    case "GETUSER": {
+      return {
+        ...state,
+        users: [...payload],
+      };
+    }
+    case "DELETEUSER":
+      const deletedUser = state.users.filter((user) => user.userId !== payload);
+      return { ...state, users: [...deletedUser] };
 
     default:
       // 기존 state를 그대로 반환

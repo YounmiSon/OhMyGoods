@@ -5,6 +5,7 @@ import { loginAction } from "../redux/actions/loginAction";
 const Login = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -25,11 +26,11 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center  mt-28">
+      <div className="flex flex-col justify-center items-center mt-28">
         <label>이메일</label>
-        <input type="text" name="email" value={inputs.email} onChange={inputsHandler} className="border-black border-[1px]" />
+        <input type="text" name="email" value={inputs.email} onChange={inputsHandler} className="w-60 h-10 bg-slate-100 text-lg" />
         <label className="mt-4">비밀번호</label>
-        <input type="password" name="password" value={inputs.password} onChange={inputsHandler} className="border-black border-[1px]" />
+        <input type="password" name="password" value={inputs.password} onChange={inputsHandler} className="w-60 h-10 bg-slate-100 text-lg" />
       </div>
       <div className="flex justify-center items-center">
         <input type="submit" value="로그인" onClick={login} className="cursor-pointer pr-6" />

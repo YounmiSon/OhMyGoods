@@ -26,6 +26,8 @@ const options = {
 // 전달 받은 객체 형태를 해석해서 사용할 수 있게 설정
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use("/img", express.static("/upload"));
+
 // cors options설정
 app.use(cors(options));
 // 경로에 해당하는 모든 라우터
@@ -39,27 +41,23 @@ app.post("/join", async (req, res) => {
   const users = await User.findOne({
     where: { email: email },
   });
-  // console.log(req.body.email);
-  // console.log(users.dataValues.email);
-  if (!users) {
+  if (users) {
+    res.send(users);
+  } else {
     User.create({
       email: email,
       nickname: nickname,
       password: password,
       authority: "일반회원",
       point: 1000,
-    }).then(() => {
-      res.send(users);
-    });
-  } else {
-    res.send(users);
+    }).then(res.send(users));
   }
 });
 
 // 로그인
 app.post("/login", async (req, res) => {
   let { email, password } = req.body;
-  const users = await User.findOne({
+  const user = await User.findOne({
     where: { email: email, password: password },
   })
     .then((e) => {
@@ -79,9 +77,11 @@ app.post("/mypage", (req, res) => {
     where: {
       nickname: req.body.nickname,
     },
-  }).then((e) => {
-    res.send({ data: e });
-  });
+  })
+    .then((e) => {
+      res.send({ data: e });
+    })
+    .catch((err) => console.log(err));
 });
 
 // 포트 대기

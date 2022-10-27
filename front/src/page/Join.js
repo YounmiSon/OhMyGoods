@@ -1,15 +1,19 @@
 // 회원가입 페이지
 import React, { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { loginAction } from "../redux/actions/loginAction";
 
 const Join = () => {
+  const nav = useNavigate();
   const dispatch = useDispatch();
 
   // useRef를 사용하면 불필요한 렌더링을 막을 수 있다,
   // 변경 시 렌더링 발생시키지 말하야 하는 값을 다룰 때 사용
   // input요소를 클릭하지 않고 포커스를 주고 싶을 때 주로 사용
   const emailRef = useRef();
+  const pwdRef = useRef();
+  const nicknameRef = useRef();
 
   // 입력 값 받기
   const [userInputs, setUserInputs] = useState({
@@ -25,7 +29,7 @@ const Join = () => {
     password: false,
   });
 
-  // 이메일 정규식 체크해서 실시간으로 알려주기
+  // 정규식 체크해서 실시간으로 알려주기
   // 입력창에서 벗어났을 때 발생하는 onBlur 이벤트에 걸려있는 함수
   const checkEmail = () => {
     // 정규식 + test함수
@@ -39,12 +43,28 @@ const Join = () => {
     regTest ? onValidate(false) : onValidate(true);
   };
 
+  const checkName = () => {
+    const regExp = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
+    const regTest = regExp.test(userInputs.nickname);
+    const onValidate = (onOff) => (onOff ? nicknameRef.current.classList.remove("hidden") : nicknameRef.current.classList.add("hidden"));
+    regTest ? onValidate(false) : onValidate(true);
+  };
+
+  const checkPwd = () => {
+    const regExp = /^[A-Za-z0-9]{6,12}$/;
+    const regTest = regExp.test(userInputs.password);
+    const onValidate = (onOff) => (onOff ? pwdRef.current.classList.remove("hidden") : pwdRef.current.classList.add("hidden"));
+
+    regTest ? onValidate(false) : onValidate(true);
+  };
+
   // 정규식 모아둠
   const regs = {
     email: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
     nickname: /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/,
     password: /^[A-Za-z0-9]{6,12}$/,
   };
+
   // 정규식 체크하는 애
   const regChecker = (regExp, value) => regExp.test(value);
 
@@ -63,7 +83,7 @@ const Join = () => {
     const isAllTrue = Object.values(userValidate).every((value) => value); //[true, true, true]
     // 모두 true이면 dispatch loginAction의 join함수 호출, 액션 실행
     if (isAllTrue) {
-      dispatch(loginAction.join(userInputs.email, userInputs.nickname, userInputs.password));
+      dispatch(loginAction.join(userInputs.email, userInputs.nickname, userInputs.password, nav));
     } else {
       alert("다시 작성해주세요");
     }
@@ -72,20 +92,26 @@ const Join = () => {
     <>
       <div className="flex flex-col justify-center items-center mt-28 ">
         <label>이메일</label>
-        <input type="text" name="email" value={userInputs.email} className="border-black border-[1px]" onChange={userInputsHandler} onBlur={checkEmail} />
+        <input placeholder="ex)hello123@test.com" type="text" name="email" value={userInputs.email} className="w-60 h-10 bg-slate-100 text-lg" onChange={userInputsHandler} onBlur={checkEmail} />
 
         <label ref={emailRef} className="hidden text-red-500 animate-bounce mt-2">
           유효하지 않는 이메일입니다
         </label>
 
         <label className="mt-4">닉네임</label>
-        <input type="text" name="nickname" value={userInputs.nickname} className="border-black border-[1px]" onChange={userInputsHandler} />
+        <input placeholder="2-16자 이내, 초성은 안됨" type="text" name="nickname" value={userInputs.nickname} className="w-60 h-10 bg-slate-100 text-lg" onChange={userInputsHandler} onBlur={checkName} />
+        <label ref={nicknameRef} className="hidden text-red-500 animate-bounce mt-2">
+          닉네임 조건을 확인해주세요
+        </label>
 
         <label className="mt-4">비밀번호</label>
-        <input type="password" name="password" value={userInputs.password} className="border-black border-[1px]" onChange={userInputsHandler} />
+        <input placeholder="대/소문자 or 숫자 6-12자" type="password" name="password" value={userInputs.password} className="w-60 h-10 bg-slate-100 text-lg" onChange={userInputsHandler} onBlur={checkPwd} />
+        <label ref={pwdRef} className="hidden text-red-500 animate-bounce mt-2">
+          비밀번호 조건을 확인해주세요
+        </label>
       </div>
       <div className="flex justify-center items-center">
-        <input type="submit" value="회원가입" onClick={signUp} />
+        <input type="submit" value="회원가입" onClick={signUp} className="bg-indigo-100 p-3 rounded-lg mt-4" />
       </div>
     </>
   );
