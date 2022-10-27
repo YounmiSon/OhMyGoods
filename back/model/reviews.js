@@ -14,10 +14,6 @@ class Review extends Sequelize.Model {
           type: Sequelize.STRING(100),
           allowNull: false,
         },
-        reviewWriter: {
-          type: Sequelize.TEXT,
-          allowNull: false,
-        },
       },
       {
         sequelize,
@@ -32,6 +28,7 @@ class Review extends Sequelize.Model {
   }
   static associate(db) {
     db.Review.belongsTo(db.Product, { foreignKey: "productsId", targetKey: "productsId" });
+    db.Review.belongsTo(db.User, { foreignKey: "reviewWriter", targetKey: "nickname" });
   }
 }
 

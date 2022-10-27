@@ -8,7 +8,7 @@ class User extends Sequelize.Model {
           type: Sequelize.INTEGER,
           allowNull: false,
           autoIncrement: true,
-          unique: true
+          unique: true,
         },
         email: {
           type: Sequelize.STRING(20),
@@ -52,6 +52,8 @@ class User extends Sequelize.Model {
   static associate(db) {
     db.User.hasMany(db.Post, { foreignKey: "writer", sourceKey: "nickname" });
     db.User.hasMany(db.Cart, { foreignKey: "userId", sourceKey: "userId" });
+    db.User.hasMany(db.Product, { foreignKey: "uploader", sourceKey: "nickname" });
+    db.User.hasMany(db.Review, { foreignKey: "reviewWriter", sourceKey: "nickname" });
   }
 }
 
