@@ -90,28 +90,32 @@ const Join = () => {
   };
   return (
     <>
-      <div className="flex flex-col justify-center items-center mt-28 ">
-        <label>이메일</label>
-        <input placeholder="ex)hello123@test.com" type="text" name="email" value={userInputs.email} className="w-60 h-10 bg-slate-100 text-lg" onChange={userInputsHandler} onBlur={checkEmail} />
+      <div className="flex flex-col justify-center items-center">
+        <div className="bg-[#816bff]/50 w-96 h-[450px] rounded-xl mt-52 shadow-md">
+          <div className="flex flex-col justify-center items-center mt-16">
+            <label className="text-white text-lg">이메일</label>
+            <input placeholder="ex)hello123@test.com" type="text" name="email" value={userInputs.email} className="w-60 h-10 bg-white shadow-md text-lg" onChange={userInputsHandler} onBlur={checkEmail} />
 
-        <label ref={emailRef} className="hidden text-red-500 animate-bounce mt-2">
-          유효하지 않는 이메일입니다
-        </label>
+            <label ref={emailRef} className="hidden text-red-600 animate-bounce mt-2">
+              유효하지 않는 이메일입니다
+            </label>
 
-        <label className="mt-4">닉네임</label>
-        <input placeholder="2-16자 이내, 초성은 안됨" type="text" name="nickname" value={userInputs.nickname} className="w-60 h-10 bg-slate-100 text-lg" onChange={userInputsHandler} onBlur={checkName} />
-        <label ref={nicknameRef} className="hidden text-red-500 animate-bounce mt-2">
-          닉네임 조건을 확인해주세요
-        </label>
+            <label className="mt-4 text-white text-lg">닉네임</label>
+            <input placeholder="2-16자 이내, 초성은 안됨" type="text" name="nickname" value={userInputs.nickname} className="w-60 h-10 bg-white shadow-md text-lg" onChange={userInputsHandler} onBlur={checkName} />
+            <label ref={nicknameRef} className="hidden text-red-600 animate-bounce mt-2">
+              닉네임 조건을 확인해주세요
+            </label>
 
-        <label className="mt-4">비밀번호</label>
-        <input placeholder="대/소문자 or 숫자 6-12자" type="password" name="password" value={userInputs.password} className="w-60 h-10 bg-slate-100 text-lg" onChange={userInputsHandler} onBlur={checkPwd} />
-        <label ref={pwdRef} className="hidden text-red-500 animate-bounce mt-2">
-          비밀번호 조건을 확인해주세요
-        </label>
-      </div>
-      <div className="flex justify-center items-center">
-        <input type="submit" value="회원가입" onClick={signUp} className="bg-indigo-100 p-3 rounded-lg mt-4" />
+            <label className="mt-4 text-white text-lg">비밀번호</label>
+            <input placeholder="대/소문자 or 숫자 6-12자" type="password" name="password" value={userInputs.password} className="w-60 h-10 bg-white shadow-md text-lg" onChange={userInputsHandler} onBlur={checkPwd} />
+            <label ref={pwdRef} className="hidden text-red-600 animate-bounce mt-2">
+              비밀번호 조건을 확인해주세요
+            </label>
+          </div>
+          <div className="flex justify-center items-center">
+            <input type="submit" value="회원가입" onClick={signUp} className="bg-white cursor-pointer w-20 h-10 rounded-lg mt-6 hover:bg-[#816bff] hover:text-white" />
+          </div>
+        </div>
       </div>
     </>
   );

@@ -21,7 +21,7 @@ const Mypage = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center mt-28">
-        <div className="flex justify-center items-center border-[2px] rounded-xl">
+        <div className=" bg-white/70 flex justify-center items-center border-[2px] rounded-xl">
           <div className="mx-10">
             <img className="w-56 my-6 rounded-full" src="/img/default_profile.png" alt="profile" />
           </div>
@@ -29,7 +29,7 @@ const Mypage = () => {
             <span className="text-xl">닉네임 : {nickname}</span>
             <span className="text-xl">보유포인트: {point}</span>
             <div>
-              <input onClick={editUserInfo} type="submit" value="수정하기" className="cursor-pointer bg-indigo-200 ml-8 mt-2 p-3 rounded-xl" />
+              <input onClick={editUserInfo} type="submit" value="수정하기" className="cursor-pointer bg-[#816bff]/70 p-3 mt-4 rounded-xl text-lg text-white" />
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@ const Mypage = () => {
             <h1 className="my-8 text-xl">포인트 사용내역</h1>
             <table className="w-[800px]">
               <thead>
-                <tr className="grid-rows-3 text-center bg-gray-100 h-12 border-[1px] border-b-black">
+                <tr className="grid-rows-3 text-center bg-white h-12 border-[1px] border-b-black">
                   <td>상품 이름</td>
                   <td>사용 포인트</td>
                   <td>잔여 포인트</td>

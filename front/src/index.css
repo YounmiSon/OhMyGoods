@@ -6,8 +6,7 @@
 /* 폰트설정 */
 @font-face {
   font-family: "LeferiBaseType-RegularA";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff")
-    format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -17,6 +16,7 @@
 }
 
 body {
+  background-color: rgba(129, 107, 255, 0.05);
   margin: 0;
   font-family: "LeferiBaseType-RegularA";
   -webkit-font-smoothing: antialiased;

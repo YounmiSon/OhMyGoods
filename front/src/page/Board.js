@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Pagination from "../components/Pagination";
@@ -38,19 +38,20 @@ const Board = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center mt-28">
+      <div className="flex flex-col justify-center items-center mt-28">
+        <h1 className="text-3xl my-4 font-bold">공지사항</h1>
         <table className="w-3/5">
           <thead>
-            <tr className="grid-rows-4 text-center bg-gray-100 h-12 border-[1px] border-b-black">
+            <tr className="text-center bg-white h-12 border-[1px] border-b-black">
               <td>번호</td>
-              <td>제목</td>
+              <td className="w-[300px]">제목</td>
               <td>글쓴이</td>
               <td>작성일</td>
             </tr>
           </thead>
           <tbody>
             {posts.map(({ postId, title, createdAt, writer }) => (
-              <tr key={postId} className="grid-rows-4 text-center h-12 border-[1px] border-b-black">
+              <tr key={postId} className="text-center h-12 border-[1px] border-b-black">
                 <td className="w-36">{postId}</td>
                 <td>
                   <div

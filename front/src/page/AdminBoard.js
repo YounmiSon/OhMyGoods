@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { boardAction } from "../redux/actions/boardAction";
 
 const AdminBoard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const posts = useSelector((state) => state.boardReducer.posts);
   useEffect(() => {
@@ -21,8 +20,8 @@ const AdminBoard = () => {
       window.location.href = "/admin/board";
     }
   };
-  const editPost = () => {
-    nav("/admin/board/edit");
+  const editPost = (postId) => {
+    nav(`/admin/board/edit/${postId}`);
   };
   const writeNotice = () => {
     nav("/admin/board/write");
@@ -34,7 +33,7 @@ const AdminBoard = () => {
         <div className="flex flex-col justify-center items-center">
           <table className="w-[900px]">
             <thead>
-              <tr className="text-center bg-gray-100 h-12 border-[1px] border-b-black">
+              <tr className="text-center bg-white h-12 border-[1px] border-b-black">
                 <td>번호</td>
                 <td>제목</td>
                 <td className="w-[200px] text-ellipsis overflow-hidden whitespace-nowrap">내용</td>
@@ -58,14 +57,19 @@ const AdminBoard = () => {
                   >
                     삭제
                   </td>
-                  <td onClick={editPost} className="cursor-pointer font-extrabold">
+                  <td
+                    onClick={(e) => {
+                      editPost(postId);
+                    }}
+                    className="cursor-pointer font-extrabold"
+                  >
                     수정
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button onClick={writeNotice} className="bg-indigo-100 p-3 rounded-lg mt-4">
+          <button onClick={writeNotice} className="bg-white cursor-pointer shadow-md w-20 h-10 rounded-lg mt-6 hover:bg-[#816bff] hover:text-white">
             공지 작성
           </button>
         </div>

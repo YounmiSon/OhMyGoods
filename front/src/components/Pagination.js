@@ -11,7 +11,7 @@ const Paginations = ({ postsPerPage, totalPosts, paginate }) => {
         <div className="flex justify-center items-center mt-4">
           {pageNumbers.map((number) => (
             <div key={number}>
-              <div onClick={() => paginate(number)} className="w-8 h-8 flex justify-center items-center bg-slate-200 cursor-pointer mr-2 rounded-lg">
+              <div onClick={() => paginate(number)} className="w-8 h-8 flex justify-center items-center bg-white cursor-pointer mr-2 rounded-lg hover:bg-[#816bff] hover:text-white">
                 {number}
               </div>
             </div>

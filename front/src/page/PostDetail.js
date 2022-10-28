@@ -19,39 +19,17 @@ const PostDetail = () => {
     dispatch(boardAction.getPost(id));
   }, []);
 
-  // post 수정
-  const editPost = () => {
-    nav("/board/edit");
-  };
-
-  // post 삭제
-  const deletePost = () => {
-    if (window.confirm("정말 삭제하시겠습니까?")) {
-      dispatch(boardAction.deletePost(location.pathname.split("/board/")[1]));
-      window.location.href = "/board";
-    } else {
-      window.location.reload();
-    }
-  };
   return (
     <>
       <div className="flex flex-col justify-center items-center mt-28 ">
-        <div className="flex items-center justify-center h-12 bg-gray-200 w-3/5 border-b-black border">
-          <h1 className="text-2xl">{postDetails.title}</h1>
+        <div className="flex items-center justify-center h-16 bg-white w-3/5 border-b-black border">
+          <h1 className="text-2xl font-bold">{postDetails.title}</h1>
         </div>
         <div className="flex justify-between items-center h-12 w-3/5 border-b-black border">
           <span className="ml-12">작성일 : {postDetails.createdAt}</span>
           <span className="mr-12">글쓴이 : {postDetails.writer}</span>
         </div>
-        <p className="w-3/5 h-[500px] border-b-black border text-justify p-12 text-xl">{postDetails.content}</p>
-        <div className="mt-8">
-          <button onClick={editPost} className="mr-4 w-16 h-12 bg-slate-300 text-center pt-1 rounded-lg">
-            수정
-          </button>
-          <button onClick={deletePost} className="w-16 h-12 bg-slate-300 text-center pt-1 rounded-lg">
-            삭제
-          </button>
-        </div>
+        <p className="w-3/5 h-[500px] break-words border-b-black border text-justify p-12 text-xl">{postDetails.content}</p>
       </div>
     </>
   );

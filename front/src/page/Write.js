@@ -36,7 +36,7 @@ const Write = () => {
         <input type="text" name="title" value={inputs.title} onChange={inputsHandler} className="border-[1px] border-black w-[50%]" />
         <label className="mt-4">내용</label>
         <textarea name="content" value={inputs.content} onChange={inputsHandler} className="border-[1px] border-black w-[50%] h-80" />
-        <button onClick={submitHandler} className="justify-center items-center bg-yellow-200 p-3 rounded-xl mt-4">
+        <button onClick={submitHandler} className="justify-center items-center bg-[#816bff]/40 p-3 rounded-xl mt-4">
           등록하기
         </button>
       </div>
