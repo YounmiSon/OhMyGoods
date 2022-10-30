@@ -1,5 +1,7 @@
 import Nav from "./Nav";
 import CartItems from "./CartItems";
 import Pagination from "./Pagination";
-import Review from "./Review";
-export { Nav, CartItems, Pagination, Review };
+import Reviews from "./Reviews";
+import Rating from "./Rating";
+import UploadImg from "./UploadImg";
+export { Nav, CartItems, Pagination, Reviews, Rating, UploadImg };
