@@ -18,7 +18,7 @@ const AdminUser = () => {
       dispatch(loginAction.deleteUser(userId));
       alert("삭제완료");
     } else {
-      window.location.href = "/admin/user";
+      alert("취소됨");
     }
   };
 
@@ -29,7 +29,7 @@ const AdminUser = () => {
         <div className="flex justify-center items-center">
           <table className="w-[900px]">
             <thead>
-              <tr className="grid-rows-4 text-center bg-gray-100 h-12 border-[1px] border-b-black">
+              <tr className="grid-rows-4 text-center bg-white h-12 border-[1px] border-b-black">
                 <td>이메일</td>
                 <td>닉네임</td>
                 <td>가입일</td>

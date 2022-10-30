@@ -36,7 +36,8 @@ const ProductDetail = () => {
     <>
       <div className="flex justify-center items-center">
         <div className="flex justify-center items-center bg-[#816bff]/20 w-[800px] h-[450px] rounded-xl mt-28 shadow-md">
-          <img alt="productImg" src={productDetails.productsImg} className="w-[300px] h-[300px] bg-white border-gray border-[2px] rounded-xl mr-24" />
+          {/* <img alt="productImg" src={productDetails.productsImg} className="w-[300px] h-[300px] bg-white border-gray border-[2px] rounded-xl mr-24" /> */}
+          <img alt="productImg" src="/img/ex.jpg" className="w-[300px] h-[300px] bg-white border-gray border-[2px] rounded-xl mr-24" />
           <div className="flex  flex-col justify-center items-center">
             <h1 className="mt-12 text-3xl font-bold">{productDetails.productsName}</h1>
             <span className="my-2">필요 포인트 : {productDetails.productsPrice}P</span>

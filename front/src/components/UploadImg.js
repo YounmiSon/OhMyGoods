@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { cartAction } from "../redux/actions/cartAction";
 import { useNavigate } from "react-router-dom";
-  
+
 // AddItems에서 props로 {inputs}를 받아왔다 컴포넌트를 분리해서 어쩔 수 없었음
 const UploadImg = ({ inputs }) => {
   const dispatch = useDispatch();
@@ -26,8 +26,9 @@ const UploadImg = ({ inputs }) => {
     inputs.productsImg = files.name;
 
     // 받아온 inputs 할당
-    const { productsName, productsPrice, productsDetail, productsImg } = inputs;
+    const { uploader, productsName, productsPrice, productsDetail, productsImg } = inputs;
     // 근데 자꾸 [object Object] 로 찍혀서 그냥 다 쪼개서 append해줌
+    formData.append("uploader", uploader);
     formData.append("productsName", productsName);
     formData.append("productsPrice", productsPrice);
     formData.append("productsDetail", productsDetail);
@@ -46,7 +47,7 @@ const UploadImg = ({ inputs }) => {
 
   return (
     <>
-      <div>
+      <div className="flex flex-col">
         <input
           type="file"
           name="imgUpload"
@@ -55,7 +56,7 @@ const UploadImg = ({ inputs }) => {
             setFiles(e.target.files[0]);
           }}
         />
-        <button onClick={registerItem} className="bg-indigo-100 p-4 rounded-xl">
+        <button onClick={registerItem} className="bg-white p-4 mt-4 rounded-xl text-lg hover:bg-[#816bff] hover:text-white">
           등록하기
         </button>
       </div>

@@ -1,11 +1,12 @@
 // 마이페이지 회원정보 수정
 import { useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const EditMyInfo = () => {
   const nav = useNavigate();
   // 앞선 유저 정보 불러오기
-
+  const nickname = useSelector((state) => state.loginReducer.nickname);
   // 변경된 내용(프사, 닉네임) 반영하기
 
   // 프로필 사진 변경 및 반영 -> 저장이랑 default 이미지 확인하기
@@ -29,25 +30,32 @@ const EditMyInfo = () => {
     };
   };
   return (
-    <div className="flex flex-col justify-center items-center mt-28 w-screen">
-      <img className="w-96 my-8 rounded-full" src={imageSrc ? imageSrc : "/img/default_profile.png"} alt="profile" />
-      <div>
-        <label>닉네임</label>
-        <input type="text" className="border-black border-[1px]" />
-      </div>
-      <div>
-        <label>프로필 이미지</label>
-        <input ref={imgRef} onChange={onChangeImage} type="file" />
-      </div>
+    <div className="flex flex-col justify-center items-center mt-80">
+      <div className="flex bg-white/70 w-[700px] justify-center items-center border-[2px] rounded-xl">
+        <div className="mx-10">
+          <img className="w-56 my-6 ml-8 rounded-full" src={imageSrc ? imageSrc : "/img/default_profile.png"} alt="profile" />
+        </div>
+        <div className="flex flex-col items-start ml-12">
+          <div className="mb-3">
+            <label className="text-xl">닉네임</label>
+            <input type="text" className="bg-white shadow-md w-40 h-8 ml-2" placeholder={nickname} />
+          </div>
 
-      <input
-        type="submit"
-        value="수정완료"
-        className="cursor-pointer border-black border-[1px]"
-        onClick={() => {
-          nav("/mypage");
-        }}
-      />
+          <div>
+            <label className="text-xl">프로필 이미지</label>
+            <br />
+            <input ref={imgRef} onChange={onChangeImage} type="file" className="ml-2" />
+          </div>
+          <input
+            type="submit"
+            value="수정완료"
+            className="cursor-pointer bg-[#816bff]/70 text-white ml-20 mt-8 p-3 rounded-xl"
+            onClick={() => {
+              nav("/mypage");
+            }}
+          />
+        </div>
+      </div>
     </div>
   );
 };

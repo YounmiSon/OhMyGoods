@@ -27,7 +27,7 @@ const upload = multer({
 router.use(express.urlencoded({ extended: false }));
 
 // 상품 목록 불러오기
-router.get("/", (req, res) => {
+router. get("/", (req, res) => {
   Product.findAll().then((datas) => {
     res.send(datas);
   });
@@ -51,7 +51,8 @@ router.post("/add", upload.single("file"), (req, res) => {
       productsName,
       productsPrice,
       productsDetail,
-      productsImg: "http://localhost:8000/img/" + req.file.filename,
+      // productsImg: "http://localhost:8000/img/" + req.file.filename,
+      productsImg: "./img/ex.jpg",
     })
       .then((datas) => {
         res.send(datas);
