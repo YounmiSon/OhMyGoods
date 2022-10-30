@@ -50,19 +50,20 @@ function editPost({ postId, title, content, writer }, nav) {
   return async (dispatch, getState) => {
     const post = await axios({
       method: "post",
-      url: "http://localhost:8000/admin/board/edit",
+      url: `http://localhost:8000/admin/board/edit/${postId}`,
       data: {
         postId,
         title,
         content,
         writer,
+        updatedAt: Date.now(),
       },
     });
-    if (title === "" || content === "") {
+    if (post.title === "" || post.content === "") {
       alert("내용을 입력해주세요");
-      nav("/admin/board/edit");
     } else {
       nav("/admin/board");
+      alert("수정완료");
     }
   };
 }

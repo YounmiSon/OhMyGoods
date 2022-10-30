@@ -82,7 +82,7 @@ function App() {
         <Route path="/admin/user" element={<AdminUserRedirect />} isAdmin={isAdmin} />
         <Route path="/admin/board" element={<AdminBoardRedirect />} isAdmin={isAdmin} />
         <Route path="/admin/board/write" element={<WriteRedirect />} isAdmin={isAdmin} />
-        <Route path="/admin/board/edit" element={<EditRedirect />} isAdmin={isAdmin} />
+        <Route path="/admin/board/edit/:id" element={<EditRedirect />} isAdmin={isAdmin} />
         {/* 상점 */}
         <Route path="/shop" element={<ShopRedirect />} isLogin={isLogin} />
         <Route path="/shop/cart" element={<CartRedirect />} isLogin={isLogin} />

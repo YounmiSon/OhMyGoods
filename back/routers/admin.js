@@ -57,20 +57,24 @@ router.post("/board/write", async (req, res) => {
       .catch((err) => console.log(err));
   }
 });
+
 // 글 수정하기
-router.post("/board/edit", (req, res) => {
-  const { postId, title, content } = req.body;
+router.post("/board/edit/:id", (req, res) => {
+  let postId = req.params.id;
+  const { title, content, createdAt } = req.body;
+  const updatedAt = Date.now();
   Post.update(
     {
       title: title,
       content: content,
+      createdAt: updatedAt,
     },
     {
       where: { postId: postId },
     }
   )
-    .then((datas) => {
-      res.send(datas);
+    .then((e) => {
+      res.send(e);
     })
     .catch((err) => console.log(err));
 });
