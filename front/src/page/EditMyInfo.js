@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const EditMyInfo = () => {
   const nav = useNavigate();
   // 앞선 유저 정보 불러오기
-  const nickname = useSelector((state) => state.loginReducer.nickname);
+  const nickname = useSelector((state) => state.user.nickname);
   // 변경된 내용(프사, 닉네임) 반영하기
 
   // 프로필 사진 변경 및 반영 -> 저장이랑 default 이미지 확인하기

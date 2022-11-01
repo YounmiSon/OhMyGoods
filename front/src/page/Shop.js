@@ -2,17 +2,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { cartAction } from "../redux/actions/cartAction";
+import { getProductAll, addCart } from "../modules/cart";
 
 const Shop = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.cartReducer.items);
-  const productDetails = useSelector((state) => state.cartReducer.productDetails);
+  const items = useSelector((state) => state.cart.items);
+  const productDetails = useSelector((state) => state.cart.productDetails);
   const uploader = productDetails.uploader;
 
   useEffect(() => {
-    dispatch(cartAction.getProductAll());
+    dispatch(getProductAll());
   }, []);
 
   const showProductDetail = (productsId) => nav(`/shop/${productsId}`, { state: { id: productsId } });
@@ -45,7 +45,7 @@ const Shop = () => {
                 <button
                   onClick={(item) => {
                     console.log("!!!");
-                    dispatch(cartAction.addCart(item));
+                    dispatch(addCart(item));
                   }}
                   className="bg-white rounded-lg p-2 mr-3 text-m"
                 >

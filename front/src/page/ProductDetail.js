@@ -1,31 +1,31 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { cartAction } from "../redux/actions/cartAction";
 import { Reviews } from "../components";
+import { getProduct, deleteProduct, addCart } from "../modules/cart";
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
   // const items = useSelector((state) => state.cartReducer.items);
-  const productDetails = useSelector((state) => state.cartReducer.productDetails);
-  const nickname = useSelector((state) => state.loginReducer.nickname);
+  const productDetails = useSelector((state) => state.cart.productDetails);
+  const nickname = useSelector((state) => state.user.nickname);
   // const uploader = productDetails.uploader;
   // console.log(productDetails.uploader);
 
   useEffect(() => {
     const id = location.pathname.split("/shop/")[1];
-    dispatch(cartAction.getProduct(id));
+    dispatch(getProduct(id));
   }, []);
 
   useEffect(() => {
     // console.log(productDetails.productsImg);
   }, [productDetails]);
 
-  const deleteProduct = () => {
+  const deleteProductBtn = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      dispatch(cartAction.deleteProduct(location.pathname.split("/shop/")[1]));
+      dispatch(deleteProduct(location.pathname.split("/shop/")[1]));
       // window.location.href = "/shop";
       alert("삭제되었습니다");
     } else {
@@ -46,13 +46,13 @@ const ProductDetail = () => {
               <button
                 onClick={(item) => {
                   console.log("!!!");
-                  dispatch(cartAction.addCart(item));
+                  dispatch(addCart(item));
                 }}
                 className="w-16 h-12 bg-white text-center pt-1 mr-2 rounded-lg  hover:bg-[#816bff] hover:text-white"
               >
                 구매
               </button>
-              <button onClick={deleteProduct} className="w-16 h-12 bg-white text-center pt-1 rounded-lg  hover:bg-[#816bff] hover:text-white">
+              <button onClick={deleteProductBtn} className="w-16 h-12 bg-white text-center pt-1 rounded-lg  hover:bg-[#816bff] hover:text-white">
                 삭제
               </button>
             </div>

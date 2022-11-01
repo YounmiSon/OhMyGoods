@@ -11,10 +11,10 @@ const Mypage = () => {
   };
 
   // 닉네임 가져오기
-  const nickname = useSelector((state) => state.loginReducer.nickname);
+  const nickname = useSelector((state) => state.user.nickname);
 
   // 포인트 가져오기
-  const point = useSelector((state) => state.loginReducer.point);
+  const point = useSelector((state) => state.user.point);
 
   // 프로필 사진 수정한 다음 저장
 

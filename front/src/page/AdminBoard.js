@@ -1,26 +1,26 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { boardAction } from "../redux/actions/boardAction";
+import { getPostAll, deletePost } from "../modules/board";
 
 const AdminBoard = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
-  const posts = useSelector((state) => state.boardReducer.posts);
+  const posts = useSelector((state) => state.board.posts);
   useEffect(() => {
-    dispatch(boardAction.getPostAll());
+    dispatch(getPostAll());
   }, []);
 
-  const deletePost = (postId) => {
+  const deletePostBtn = (postId) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      dispatch(boardAction.deletePost(postId));
+      dispatch(deletePost(postId));
       alert("삭제완료");
     } else {
       window.location.href = "/admin/board";
     }
   };
-  const editPost = (postId) => {
+  const editPostBtn = (postId) => {
     nav(`/admin/board/edit/${postId}`);
   };
   const writeNotice = () => {
@@ -51,7 +51,7 @@ const AdminBoard = () => {
                   <td>{createdAt}</td>
                   <td
                     onClick={(e) => {
-                      deletePost(postId);
+                      deletePostBtn(postId);
                     }}
                     className="cursor-pointer font-extrabold"
                   >
@@ -59,7 +59,7 @@ const AdminBoard = () => {
                   </td>
                   <td
                     onClick={(e) => {
-                      editPost(postId);
+                      editPostBtn(postId);
                     }}
                     className="cursor-pointer font-extrabold"
                   >

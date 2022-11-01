@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { UploadImg } from "../components";
 
 const AddItems = () => {
-  const uploader = useSelector((state) => state.loginReducer.nickname);
+  const uploader = useSelector((state) => state.user.nickname);
   const [inputs, setInputs] = useState({
     uploader: uploader,
     productsName: "",

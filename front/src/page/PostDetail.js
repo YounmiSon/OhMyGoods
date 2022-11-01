@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { boardAction } from "../redux/actions/boardAction";
+import { getPost } from "../modules/board";
 
 const PostDetail = () => {
   const nav = useNavigate();
@@ -9,14 +9,14 @@ const PostDetail = () => {
   const location = useLocation();
 
   // post 가져오는데 postId가 일치하는 것만(?) 가져와야됨
-  const posts = useSelector((state) => state.boardReducer.posts);
-  const postDetails = useSelector((state) => state.boardReducer.postDetails);
+  const posts = useSelector((state) => state.board.posts);
+  const postDetails = useSelector((state) => state.board.postDetails);
   //console.log(posts);
 
   useEffect(() => {
     // 여기서 uselocation으로 id 값을 각각 가져오면 됨
     const id = location.pathname.split("/board/")[1];
-    dispatch(boardAction.getPost(id));
+    dispatch(getPost(id));
   }, []);
 
   return (

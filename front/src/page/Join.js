@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginAction } from "../redux/actions/loginAction";
+import { join } from "../modules/user";
 
 const Join = () => {
   const nav = useNavigate();
@@ -83,7 +83,7 @@ const Join = () => {
     const isAllTrue = Object.values(userValidate).every((value) => value); //[true, true, true]
     // 모두 true이면 dispatch loginAction의 join함수 호출, 액션 실행
     if (isAllTrue) {
-      dispatch(loginAction.join(userInputs.email, userInputs.nickname, userInputs.password, nav));
+      dispatch(join(userInputs.email, userInputs.nickname, userInputs.password, nav));
     } else {
       alert("다시 작성해주세요");
     }

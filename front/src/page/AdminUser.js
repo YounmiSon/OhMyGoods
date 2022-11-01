@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginAction } from "../redux/actions/loginAction";
+import { getUser, deleteUser } from "../modules/user";
 
 const AdminUser = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
 
   // 유저 정보 가져오기
-  const users = useSelector((state) => state.loginReducer.users);
+  const users = useSelector((state) => state.user.users);
   useEffect(() => {
-    dispatch(loginAction.getUser());
+    dispatch(getUser());
   }, []);
 
-  const deleteUser = (userId) => {
+  const deleteUserBtn = (userId) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      dispatch(loginAction.deleteUser(userId));
+      dispatch(deleteUser(userId));
       alert("삭제완료");
     } else {
       alert("취소됨");
@@ -45,7 +45,7 @@ const AdminUser = () => {
                   <td>{createdAt}</td>
                   <td
                     onClick={(e) => {
-                      deleteUser(userId);
+                      deleteUserBtn(userId);
                     }}
                     className="cursor-pointer font-extrabold"
                   >

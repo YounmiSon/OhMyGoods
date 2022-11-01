@@ -1,8 +1,8 @@
 // 로그인 했을 때/아닐 때 다른 NAV바 보여주기
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginAction } from ".././redux/actions/loginAction";
 import { useDispatch } from "react-redux";
+import { logOut } from "../modules/user";
 import "./Nav.css";
 
 const Nav = ({ isAdmin, isLogin }) => {
@@ -10,8 +10,8 @@ const Nav = ({ isAdmin, isLogin }) => {
   const dispatch = useDispatch();
   // 로그아웃 버튼 눌렀을 때 실행되는 함수
   // dispatch 요청 발생하면 loginAction의 logOut함수를 실행하게 함
-  const logOut = () => {
-    dispatch(loginAction.logOut());
+  const logOutBtn = () => {
+    dispatch(logOut());
   };
 
   const [show, setShow] = useState(false);
@@ -49,14 +49,18 @@ const Nav = ({ isAdmin, isLogin }) => {
         */}
             {isLogin ? (
               <>
-              {isAdmin ?  <li
-                  className="cursor-pointer"
-                  onClick={() => {
-                    nav("/admin");
-                  }}
-                >
-                  관리자
-                </li> : ""}
+                {isAdmin ? (
+                  <li
+                    className="cursor-pointer"
+                    onClick={() => {
+                      nav("/admin");
+                    }}
+                  >
+                    관리자
+                  </li>
+                ) : (
+                  ""
+                )}
                 <li
                   className="cursor-pointer"
                   onClick={() => {
@@ -73,7 +77,7 @@ const Nav = ({ isAdmin, isLogin }) => {
                 >
                   상점
                 </li>
-                <li className="cursor-pointer" onClick={logOut}>
+                <li className="cursor-pointer" onClick={logOutBtn}>
                   로그아웃
                 </li>
                 <li

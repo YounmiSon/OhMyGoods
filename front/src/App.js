@@ -4,14 +4,14 @@ import { Main, Login, Join, Mypage, EditMyInfo, Shop, Board, Write, Cart, Produc
 import { Nav } from "./components";
 function App() {
   // useSelector가 useState의 역할을 한다고 했는데
-  // 여기서 loginReducer를 타고 들어가면 isLogin이 있음
+  // 여기서 user를 타고 들어가면 isLogin이 있음
   // 그럼 걔의 상태를 바꾸겠다는 뜻임
   // 여기서 state는 combineReducer로 묶인 모든 reducer의 state로 모든 초기값을 호출함
   // 그니까 특정 리듀서의 state만 가져오고 싶으면 뒤에 등록된 리듀서 이름으로 호출해줘야 함
 
-  const isLogin = useSelector((state) => state.loginReducer.isLogin);
-  const isAdmin = useSelector((state) => state.loginReducer.isAdmin);
-  const nickname = useSelector((state) => state.loginReducer.nickname);
+  const isLogin = useSelector((state) => state.user.isLogin);
+  const isAdmin = useSelector((state) => state.user.isAdmin);
+  const nickname = useSelector((state) => state.user.nickname);
 
   // 상점
   const ShopRedirect = () => {

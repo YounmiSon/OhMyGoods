@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { boardAction } from "../redux/actions/boardAction";
+import {editPost} from "../modules/board";
 
 const Edit = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
 
   // writer로 닉네임 가져오기
-  const nickname = useSelector((state) => state.loginReducer.nickname);
-  const postId = useSelector((state) => state.boardReducer.postId);
+  const nickname = useSelector((state) => state.user.nickname);
+  const postId = useSelector((state) => state.board.postId);
 
   // 입력되는 내용 input state에 정의(?)
   const [inputs, setInputs] = useState({
@@ -28,7 +28,7 @@ const Edit = () => {
 
   // 글 작성 후 제출
   // dispatch 요청 발생하면 boardAction의 addPost함수 실행
-  const submitHandler = () => dispatch(boardAction.editPost({ ...inputs }, nav));
+  const submitHandler = () => dispatch(editPost({ ...inputs }, nav));
 
   return (
     <>

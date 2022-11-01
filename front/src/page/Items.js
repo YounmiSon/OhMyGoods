@@ -1,13 +1,14 @@
 // SHOP에 진열할 물건들
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartAction } from "../redux/actions/cartAction";
+import { getProductAll } from "../modules/cart";
+
 const Items = ({ item }) => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.cartReducer.items);
+  const items = useSelector((state) => state.cart.items);
 
   useEffect(() => {
-    dispatch(cartAction.getProductAll());
+    dispatch(getProductAll());
   }, []);
 
   return (

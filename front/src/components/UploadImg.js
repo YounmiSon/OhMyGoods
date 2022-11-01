@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { cartAction } from "../redux/actions/cartAction";
 import { useNavigate } from "react-router-dom";
-
+import { addItems } from "../modules/cart";
 // AddItems에서 props로 {inputs}를 받아왔다 컴포넌트를 분리해서 어쩔 수 없었음
 const UploadImg = ({ inputs }) => {
   const dispatch = useDispatch();
@@ -40,7 +39,7 @@ const UploadImg = ({ inputs }) => {
       nav("/shop/add");
     } else {
       // dispatch로 formdata, config, nav 다 보내기
-      dispatch(cartAction.addItems(formData, config, nav));
+      dispatch(addItems(formData, config, nav));
       nav("/shop");
     }
   };

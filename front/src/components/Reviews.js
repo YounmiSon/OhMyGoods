@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import loginReducer from "../redux/reducers/loginReducer";
+import user from "../modules/user";
 import Rating from "./Rating";
 
 const Reviews = () => {
   const dispatch = useDispatch();
-  const nickname = useSelector((state) => state.loginReducer.nickname);
-  const reviews = useSelector((state) => state.reviewReducer.reviews);
+  const nickname = useSelector((state) => state.user.nickname);
+  const reviews = useSelector((state) => state.review.reviews);
 
   const [inputs, setInputs] = useState({
     id: 1,
@@ -19,7 +19,7 @@ const Reviews = () => {
     setInputs({ ...inputs, [name]: value });
   };
   const submitReview = (inputs) => {
-    dispatch({ type: "ADD_REVIEW", payload: { ...inputs, writer: loginReducer.nickname } });
+    dispatch({ type: "ADD_REVIEW", payload: { ...inputs, writer: user.nickname } });
   };
   const deleteHandler = () => dispatch({ type: "DELETE_REVIEW", payload: inputs.id });
 
