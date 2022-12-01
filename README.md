@@ -29,3 +29,25 @@
 ||상품 조회|상품 상세화면 페이지|
 ||상품 후기| 별점 등록 및 평균 별점, 후기 등록|
 ||장바구니|장바구니 상품 등록 및 삭제|
+
+## Error Log
+1. onBlur 오류
+```
+Warning : You provided a `value` prop to a form field without an `onChange` handler.
+```
+
+onChange 이벤트 핸들러 없이 form 내부에서 'value' prop을 사용했기 때문에 <br />
+value를 사용한 Element가 읽기 전용으로 렌더링되어 input 창에 입력이 되지 않았다. <br />
+따라서 값을 수정하기 위해서는 defaultValue를 사용해야 한다(혹은 onChange 또는 readOnly로 설정해야 한다)
+
+```
+// 수정된 코드
+<input
+  type="mail"
+  name="email"
+  defaultValue={email}
+  placeholder="이메일을 입력해주세요"
+  className="border-black border-[1px]"
+  onBlur={onEmailHandler}
+/>
+```
