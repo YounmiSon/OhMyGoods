@@ -37,9 +37,11 @@ class Cart extends Sequelize.Model {
   }
   static associate(db) {
     db.Cart.belongsTo(db.User, { foreignKey: "userId", targetKey: "userId" });
-    db.Cart.hasMany(db.Product, { foreignKey: "cartProductId", targetKey: "cartProductId" });
+    db.Cart.hasMany(db.Product, {
+      foreignKey: "cartProductId",
+      targetKey: "cartProductId",
+    });
   }
 }
 
 module.exports = Cart;
-  

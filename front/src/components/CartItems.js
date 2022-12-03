@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartItems = () => {
+const CartItems = (item, idx) => {
   return (
     <>
       <img alt="cart-item" src="/img/ex.jpg" className="w-[100px]" />

@@ -5,14 +5,24 @@ import { useSelector } from "react-redux";
 
 const Cart = () => {
   // store 구독하기
-  const cart = useSelector((store) => store.cartReducer);
+  const cart = useSelector((state) => state.cart.items);
+  // console.log(cart);
   const CartItems =
     cart.length >= 1 ? (
       cart.map((item, idx) => {
         return (
           <>
-            <CartItems key={idx} item={item} idx={idx} />
-            <button>구매하기</button>
+            <ul
+              key={idx}
+              className="w-[800px] flex justify-evenly items-center p-4 border-[1px] border-b-black"
+            >
+              <li className="font-bold">{idx + 1}</li>
+              <li>{item.productsName}</li>
+              <li>{item.productsPrice}</li>
+              <li>{idx}</li>
+              <button>구매</button>
+              <button>삭제</button>
+            </ul>
           </>
         );
       })
@@ -21,7 +31,15 @@ const Cart = () => {
     );
   return (
     <>
-      <div className="flex flex-col justify-center items-center mt-28">
+      <div className="mt-28 flex flex-col justify-center items-center">
+        <ul className="w-[800px] flex justify-evenly items-center p-4 border-[1px] border-b-black">
+          <li>번호</li>
+          <li>제품명</li>
+          <li>가격</li>
+          <li>수량</li>
+          <button>구매</button>
+          <button>삭제</button>
+        </ul>
         <div>{CartItems}</div>
       </div>
     </>
