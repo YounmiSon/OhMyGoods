@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Product } = require("../model");
+const { Product, Cart } = require("../model");
 
 // 상품 업로드 할 때 사진 같이 보내주려고
 const multer = require("multer");
@@ -27,10 +27,22 @@ const upload = multer({
 router.use(express.urlencoded({ extended: false }));
 
 // 상품 목록 불러오기
-router. get("/", (req, res) => {
+router.get("/", (req, res) => {
   Product.findAll().then((datas) => {
     res.send(datas);
   });
+});
+
+router.post("/", (req, res) => {
+  Cart.create({
+    productsName,
+    productsPrice,
+    productsImg: "./img/ex.jpg",
+  })
+    .then((datas) => {
+      res.send(datas);
+    })
+    .catch((err) => console.log(err));
 });
 
 // 물건 등록하기
@@ -44,7 +56,12 @@ router.post("/add", upload.single("file"), (req, res) => {
   //   productsDetail: '50000원 짜리 농담곰, 귀엽습니다',
   //   productsImg: '02.png'
   // }
-  if (productsName === "" || productsPrice === "" || productsDetail === "" || productsImg === "") {
+  if (
+    productsName === "" ||
+    productsPrice === "" ||
+    productsDetail === "" ||
+    productsImg === ""
+  ) {
     res.send("error");
   } else {
     Product.create({
