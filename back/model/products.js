@@ -30,7 +30,7 @@ class Product extends Sequelize.Model {
       },
       {
         sequelize,
-        timestamps: true,
+        timestamps: false,
         modelName: "Product",
         tableName: "Products",
         paranoid: false,
@@ -42,7 +42,7 @@ class Product extends Sequelize.Model {
   static associate(db) {
     db.Product.belongsTo(db.User, { foreignKey: "uploader", sourceKey: "nickname" });
     db.Product.hasMany(db.Review, { foreignKey: "productsId", sourceKey: "productsId" });
-    db.Product.belongsTo(db.Cart, { foreignKey: "cartProductId", sourceKey: "cartProductId" });
+    db.Product.belongsTo(db.Cart, { foreignKey: "productsId", sourceKey: "productsId" });
   }
 }
 

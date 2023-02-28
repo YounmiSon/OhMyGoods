@@ -1,24 +1,21 @@
 // 장바구니 페이지
 import React from "react";
 import { useSelector } from "react-redux";
-// import CartItems from "../components/CartItems";/
 
 const Cart = () => {
-  // store 구독하기
-  const cart = useSelector((state) => state.cart.items);
-  // console.log(cart);
+  const cart = useSelector((state) => state.cart.cartItems);
+
+  console.log(cart);
+
   const CartItems =
     cart.length >= 1 ? (
       cart.map((item, idx) => {
         return (
           <>
-            <ul
-              key={idx}
-              className="w-[800px] flex justify-evenly items-center p-4 border-[1px] border-b-black"
-            >
+            <ul key={idx} className="w-[800px] flex justify-evenly items-center p-4 border-[1px] border-b-black">
               <li className="font-bold">{idx + 1}</li>
-              <li>{item.productsName}</li>
-              <li>{item.productsPrice}</li>
+              <li>{item.data.cartProductName}</li>
+              <li>{item.data.cartProductPrice}</li>
               <li>{idx}</li>
               <button>구매</button>
               <button>삭제</button>

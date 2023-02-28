@@ -10,11 +10,6 @@ class Cart extends Sequelize.Model {
           autoIncrement: true,
           unique: true,
         },
-        cartProductImg: {
-          type: Sequelize.STRING,
-          allowNull: true,
-          BLOB: true,
-        },
         cartProductName: {
           type: Sequelize.STRING(100),
           allowNull: false,
@@ -23,10 +18,15 @@ class Cart extends Sequelize.Model {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
+        cartProductAmount: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          defaultValue: 1,
+        },
       },
       {
         sequelize,
-        timestamps: true,
+        timestamps: false,
         modelName: "Cart",
         tableName: "Carts",
         paranoid: false,
@@ -36,11 +36,8 @@ class Cart extends Sequelize.Model {
     );
   }
   static associate(db) {
-    db.Cart.belongsTo(db.User, { foreignKey: "userId", targetKey: "userId" });
-    db.Cart.hasMany(db.Product, {
-      foreignKey: "cartProductId",
-      targetKey: "cartProductId",
-    });
+    db.Cart.belongsTo(db.User, { foreignKey: "nickname", targetKey: "nickname" });
+    db.Cart.belongsTo(db.Product, { foreignKey: "productsId", targetKey: "productsId" });
   }
 }
 
