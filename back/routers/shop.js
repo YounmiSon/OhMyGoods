@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Product, Cart } = require("../model");
+const { Product, Cart, User } = require("../model");
 
 // 상품 업로드 할 때 사진 같이 보내주려고
 const multer = require("multer");
@@ -33,22 +33,10 @@ router.get("/", (req, res) => {
   });
 });
 
-router.post("/", (req, res) => {
-  Cart.create({
-    productsName,
-    productsPrice,
-    productsImg: "./img/ex.jpg",
-  })
-    .then((datas) => {
-      res.send(datas);
-    })
-    .catch((err) => console.log(err));
-});
-
 // 물건 등록하기
 //                  upload 객체로 사용할 수 있는 메서드, single : 하나의 이미지만 업로드 할 때
 router.post("/add", upload.single("file"), (req, res) => {
-  let { productsName, productsPrice, productsDetail, productsImg } = req.body;
+  let { uploader, productsName, productsPrice, productsDetail, productsImg } = req.body;
   // console.log(req.body)
   // [Object: null prototype] {
   //   productsName: '테스트 상품1',
@@ -56,12 +44,7 @@ router.post("/add", upload.single("file"), (req, res) => {
   //   productsDetail: '50000원 짜리 농담곰, 귀엽습니다',
   //   productsImg: '02.png'
   // }
-  if (
-    productsName === "" ||
-    productsPrice === "" ||
-    productsDetail === "" ||
-    productsImg === ""
-  ) {
+  if (productsName === "" || productsPrice === "" || productsDetail === "" || productsImg === "") {
     res.send("error");
   } else {
     Product.create({
@@ -70,6 +53,7 @@ router.post("/add", upload.single("file"), (req, res) => {
       productsDetail,
       // productsImg: "http://localhost:8000/img/" + req.file.filename,
       productsImg: "./img/ex.jpg",
+      uploader,
     })
       .then((datas) => {
         res.send(datas);
@@ -86,6 +70,7 @@ router.post("/details", (req, res) => {
   })
     .then((result) => {
       res.send(result);
+      console.log(result);
     })
     .catch((err) => console.log(err));
 });
@@ -109,17 +94,24 @@ router.get("/delete/:id", (req, res) => {
 // 장바구니
 // 모든 유저의 장바구니를 Cart DB에 담은 다음에 로그인 정보와 일치하는 userId를 이용해 가져온다
 router.post("/cart", async (req, res) => {
-  let { items } = req.body;
-  const product = await Product.findOne({
-    where: { productsId: items },
-  })
-    .then((e) => {
-      console.log(product);
-      res.send(e);
+  const items = req.body;
+  // 만약 같은 productId, nickname에서 똑같은 값이 한 번 더 들어오면 amount를 하나 더 증가시키고 delete하면 아예 column을 삭제
+  const cart = await Cart.findOne({ where: { productsId: items.productsId } });
+  if (cart) {
+    const result = Cart.update({ where: { cartProductAmount: items.cartProductAmount } });
+    res.send(result);
+  } else {
+    Cart.create({
+      nickname: items.nickname,
+      productsId: items.productsId,
+      cartProductName: items.cartProductName,
+      cartProductPrice: items.cartProductPrice,
+      cartProductImg: items.cartProductImg,
     })
-    .catch((err) => {
-      console.log(err);
-      res.send(false);
-    });
+      .then((datas) => {
+        res.send(datas);
+      })
+      .catch((err) => console.log(err));
+  }
 });
 module.exports = router;

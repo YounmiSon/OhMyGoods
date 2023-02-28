@@ -39,7 +39,8 @@ const UploadImg = ({ inputs }) => {
       nav("/shop/add");
     } else {
       // dispatch로 formdata, config, nav 다 보내기
-      dispatch(addItems(formData, config, nav));
+      dispatch(addItems(inputs.uploader, formData, config, nav));
+      alert("등록되었습니다");
       nav("/shop");
     }
   };
@@ -55,7 +56,10 @@ const UploadImg = ({ inputs }) => {
             setFiles(e.target.files[0]);
           }}
         />
-        <button onClick={registerItem} className="bg-white p-4 mt-4 rounded-xl text-lg hover:bg-[#816bff] hover:text-white">
+        <button
+          onClick={registerItem}
+          className="bg-white p-4 mt-4 rounded-xl text-lg hover:bg-[#816bff] hover:text-white"
+        >
           등록하기
         </button>
       </div>

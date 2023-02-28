@@ -1,11 +1,6 @@
 // 모듈 불러오기
 import axios from "axios";
 
-// 덕스 패턴
-// src 하위에 modules 폴더를 만들고 각 기능별 파일(모듈)을 만든다
-//
-//------------------------------------------------------------------------------------------------
-//
 // 액션 타입(다른 모듈과 이름 중복되지 않게 하려고 덕스 패턴에서 액션 타입 정의할 때는 접두사를 붙인다)
 const GET_POST_DETAILS = "board/GET_POST_DETAILS";
 const GET_POST = "board/GET_POST";
@@ -15,24 +10,22 @@ const DELETE_POST = "board/DELETE_POST";
 const SET_PAGE = "board/SET_PAGE";
 
 // 액션 생성 함수
-export const addPost = ({ title, content, writer }, nav) => {
-  return async (dispatch, getState) => {
-    const post = await axios({
-      method: "post",
-      url: "http://localhost:8000/admin/board/write",
-      data: {
-        title,
-        content,
-        writer,
-      },
-    });
-    if (title === "" || content === "") {
-      alert("공백안됨");
-      nav("/admin/board/write");
-    } else {
-      nav("/board");
-    }
-  };
+export const addPost = async ({ title, content, writer }, nav) => {
+  await axios({
+    method: "post",
+    url: "http://localhost:8000/admin/board/write",
+    data: {
+      title,
+      content,
+      writer,
+    },
+  });
+  if (title === "" || content === "") {
+    alert("공백안됨");
+    nav("/admin/board/write");
+  } else {
+    nav("/board");
+  }
 };
 
 export const getPostAll = () => {
