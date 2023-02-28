@@ -4,7 +4,7 @@ class User extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
-        userId:{
+        userId: {
           type: Sequelize.INTEGER,
           allowNull: false,
           autoIncrement: true,
@@ -40,7 +40,7 @@ class User extends Sequelize.Model {
       },
       {
         sequelize,
-        timestamps: true,
+        timestamps: false,
         modelName: "User",
         tableName: "users",
         paranoid: false,
@@ -51,7 +51,7 @@ class User extends Sequelize.Model {
   }
   static associate(db) {
     db.User.hasMany(db.Post, { foreignKey: "writer", sourceKey: "nickname" });
-    db.User.hasMany(db.Cart, { foreignKey: "userId", sourceKey: "userId" });
+    db.User.hasMany(db.Cart, { foreignKey: "nickname", sourceKey: "nickname" });
     db.User.hasMany(db.Product, { foreignKey: "uploader", sourceKey: "nickname" });
     db.User.hasMany(db.Review, { foreignKey: "reviewWriter", sourceKey: "nickname" });
   }

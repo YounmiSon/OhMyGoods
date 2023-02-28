@@ -8,10 +8,6 @@ const DELETE_USER = "login/DELETE_USER";
 
 // 액션 생성 함수
 export const login = (email, password, nav) => {
-  // 여기서 미들웨어가 쓰임 redu-thunk return되는 함수가 thunk 미들웨어 함수인거임
-  // 액션을 자바스크립트 객체 뿐만아니라 함수로 보내는 것
-  // 왜냐면 액션은 객체라서 기본적으로 동기이기 때문에 미들웨어를 쓴다 즉, 액션으로 함수를 보냈을 때 이를 실행함,
-  // store에서 dispatch와 getState를 써줌
   return async (dispatch, getState) => {
     const user = await axios({
       method: "post",
@@ -25,7 +21,7 @@ export const login = (email, password, nav) => {
       alert("존재하지 않는 이메일입니다");
     } else {
       const data = user.data;
-      dispatch({ type: "LOGIN", payload: { email, password, data } });
+      dispatch({ type: LOGIN, payload: { email, password, data } });
       nav("/");
     }
   };
@@ -34,9 +30,9 @@ export const login = (email, password, nav) => {
 export const logOut = () => {
   return (dispatch, getState) => {
     if (getState().user.isLogin) {
-      dispatch({ type: "LOG_OUT" });
+      dispatch({ type: LOG_OUT });
     } else if (getState().user.isAdmin) {
-      dispatch({ type: "LOG_OUT" });
+      dispatch({ type: LOG_OUT });
     }
   };
 };
@@ -48,7 +44,7 @@ export const getUser = () => {
       url: "http://localhost:8000/admin/user",
     });
     const { data } = user;
-    dispatch({ type: "GET_USER", payload: data });
+    dispatch({ type: GET_USER, payload: data });
   };
 };
 
@@ -62,7 +58,7 @@ export const deleteUser = (userId) => {
       },
     });
     const { data } = user;
-    dispatch({ type: "DELETE_USER", payload: data });
+    dispatch({ type: DELETE_USER, payload: data });
   };
 };
 
@@ -105,7 +101,7 @@ export default function user(state = init, action) {
   const { type, payload } = action;
   // 여기서 type이름 바로 지정하고 함수를 정의해줌
   switch (type) {
-    case "LOGIN":
+    case LOGIN:
       const { nickname, point, authority } = payload.data.user;
       return {
         // 현재의 상태
@@ -120,16 +116,25 @@ export default function user(state = init, action) {
         isAdmin: authority === "관리자" ? true : false,
       };
 
-    case "LOG_OUT":
-      return { ...state, email: "", password: "", nickname: "", point: 0, authority: false, isLogin: false, isAdmin: false };
+    case LOG_OUT:
+      return {
+        ...state,
+        email: "",
+        password: "",
+        nickname: "",
+        point: 0,
+        authority: false,
+        isLogin: false,
+        isAdmin: false,
+      };
 
-    case "GET_USER": {
+    case GET_USER: {
       return {
         ...state,
         users: [...payload],
       };
     }
-    case "DELETE_USER":
+    case DELETE_USER:
       const deletedUser = state.users.filter((user) => user.userId !== payload);
       return { ...state, users: [...deletedUser] };
 
