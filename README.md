@@ -36,7 +36,23 @@
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/> <img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=flat-square&logo=Tailwind CSS&logoColor=white"/> | <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/> <img src="https://img.shields.io/badge/Sequelize-52B0E7?style=flat-square&logo=Sequelize&logoColor=white"/> <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=Express&logoColor=white"/> |
 
-## Error Log
+## 📌구현한 페이지
+1. 메인페이지 : swiper를 이용해 메인페이지 슬라이드 구현, 굿즈샵 이동 버튼
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/107897885/222339566-7060bd71-ac31-4cfa-b899-06f440565f42.png">
+</br>
+2. 로그인/회원가입 : 정규식 검사 
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/107897885/222339118-7e1947b2-6fb6-4b3b-b49e-5bdf9bf51f71.png">
+</br>
+3. 상점 : 상품 등록, 장바구니, 상세보기 기능
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/107897885/222339855-c33073eb-96e3-48d5-a875-e35a8b6dc901.png">
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/107897885/222340278-934b70d6-5c63-4c16-9710-81dd9d075847.png">
+</br>
+4. 장바구니 : 수량 변경, 삭제, 구매 기능
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/107897885/222340668-cfea62d1-6a63-49a9-a0cf-07f4246fe30b.png"></br>
+5. 마이페이지 : 유저정보, 보유 포인트
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/107897885/222340871-7ae9ff11-86d9-4da3-a8a0-10568515873e.png"></br>
+
+## 📌Error Log
 
 1. onBlur 오류
 
